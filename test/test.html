@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+    </head>
+
+    <body>
+        <p id="grid">log(1+log(10))*3</p>
+<!--        1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1-->
+        <script type="text/javascript">
+            var content = document.getElementById("grid").innerHTML;
+            var str = content;
+
+            function triProcessSelect(value) {
+                var right = str;
+                var left = "";
+                while(right.indexOf(value) >= 0) {
+                    var loc = right.indexOf(value);
+                    var len = right.length;
+                    if(loc == 0) {
+                        left += "Math." + value;
+                        right = right.substr(loc + 3);
+                        continue;
+                    }
+                    left += right.substr(0, loc) + "Math." + value;
+                    right = right.substr(loc + 3);
+                }
+                str = left + right;
+            }
+
+            function  triProcess() { //trigonometric function
+                triProcessSelect("sin");
+                triProcessSelect("cos");
+                triProcessSelect("tan");
+            }
+            
+            function powProcess() {
+                var right = "";
+                var left = "";
+                var tmp = str;
+                while(tmp.indexOf("^") > 0) {
+                    var righttmp = 0;     //record the number of parenthesis
+                    var rightrec = 0;
+                    var rightloc = 0;
+                    var lefttmp = 0;
+                    var leftrec = 0;
+                    var leftloc = 0;
+                    
+                    var loc = tmp.indexOf("^");
+                    for(var i = loc + 1; i < tmp.length; i++) {
+                        if(tmp[i] == "(")
+                            righttmp++;
+                        if(tmp[i] == ")")
+                            rightrec++;
+                        if(righttmp == rightrec) {
+                            rightloc = i;
+                            break;
+                        }
+                    }
+                    for(var i = loc - 1; i >= 0; i--) {
+                        if(tmp[i] == "(")
+                            lefttmp++;
+                        if(tmp[i] == ")")
+                            leftrec++;
+                        if(lefttmp == leftrec) {
+                            leftloc = i;
+                            break;
+                        }
+                    }
+                    tmp = tmp.substr(0, leftloc)
+                        + "Math.pow(" 
+                        + tmp.substr(leftloc, loc - leftloc) 
+                        + "," 
+                        + tmp.substr(loc + 1, rightloc - loc) 
+                        + ")" 
+                        + tmp.substr(rightloc + 1);
+                }
+                str = tmp;
+            }
+            
+            function logProcess() {
+//                var right = str;
+//                var left = "";
+//                while(right.indexOf("log") >= 0) {
+//                    var righttmp = 0;     //record the number of parenthesis
+//                    var rightrec = 0;
+//                    var rightloc = 0;
+//                    var loc = right.indexOf("log");
+//                    
+////                    for(var i = loc + 3; i < right.length; i++) {
+////                        if(right[i] == "(")
+////                            righttmp++;
+////                        if(right[i] == ")")
+////                            rightrec++;
+////                        if(righttmp == rightrec) {
+////                            rightloc = i;
+////                            break;
+////                        }
+////                    }
+//                    left += right.substr(0, loc)
+//                            + "Math.log"
+//                            + right.substr(loc + 3, rightloc - loc - 2);
+//                    right = right.substr(rightloc + 1);
+//                }
+//                str = left + right;
+                var right = str;
+                var left = "";
+                while(right.indexOf("log") >= 0) {
+                    var loc = right.indexOf(value);
+                    var len = right.length;
+                    if(loc == 0) {
+                        left += "Math.log";
+                        right = right.substr(loc + 3);
+                        continue;
+                    }
+                    left += right.substr(0, loc) + "Math.log";
+                    right = right.substr(loc + 3);
+                }
+                str = left + right;
+            }
+            
+            function Process() {
+                triProcess();
+                powProcess();
+                logProcess();
+//                if((typeof eval(str)) != "number")    //输入为空也是error
+//                    return "Error!";
+//                else
+                    return str;
+            }
+            var res = Process();
+            alert(res);
+        </script>
+        <div id="result">1</div>
+        <div id="result1">2</div>
+    </body>
+</html>
