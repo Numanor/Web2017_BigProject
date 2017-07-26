@@ -6,9 +6,10 @@
     </head>
 
     <body>
-        <p id="grid">(log(e)+sin(π/2))^(2)</p>
+        <p id="grid">(lg(100))^(2)</p>
 <!--        1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1
-log(1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1+log(10))*3-->
+(ln(e)+sin(π/2))^(2)
+ln(1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1+ln(10))*3-->
         <script type="text/javascript">
             var content = document.getElementById("grid").innerHTML;
             var str = content;
@@ -82,21 +83,46 @@ log(1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1+log(10))*3-->
                 str = tmp;
             }
             
-            function logProcess() {
+            function lnProcess() {
                 var right = str;
                 var left = "";
-                while(right.indexOf("log") >= 0) {
-                    var loc = right.indexOf("log");
+                while(right.indexOf("ln") >= 0) {
+                    var loc = right.indexOf("ln");
                     var len = right.length;
-                    if(loc == 0) {
-                        left += "Math.log";
-                        right = right.substr(loc + 3);
-                        continue;
-                    }
+
                     left += right.substr(0, loc) + "Math.log";
-                    right = right.substr(loc + 3);
+                    right = right.substr(loc + 2);
                 }
                 str = left + right;
+            }
+            
+            function lgProcess() {
+                var tmp = str;
+                while(tmp.indexOf("lg") >= 0) {
+                    var righttmp = 0;     
+                    var rightrec = 0;     
+                    var rightloc = 0;
+                    var loc = tmp.indexOf("lg");
+                    
+                    for(var i = loc + 2; i < tmp.length; i++) {
+                        if(tmp[i] == "(")
+                            righttmp++;
+                        if(tmp[i] == ")")
+                            rightrec++;
+                        if(righttmp == rightrec) {
+                            rightloc = i;
+                            break;
+                        }
+                    }
+                    
+                    tmp = tmp.substr(0, loc)
+                        + "Math.log"
+                        + tmp.substr(loc + 2, rightloc - loc - 1)
+                        + "/Math.log(10)"
+                        + tmp.substr(rightloc + 1);
+                    
+                }
+                str = tmp;
             }
             
             function factorial(n) {
@@ -157,7 +183,8 @@ log(1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1+log(10))*3-->
             function Process() {
                 triProcess();
                 powProcess();
-                logProcess();
+                lnProcess();
+                lgProcess();
                 facProcess();
                 charProcess("π");
                 charProcess("e");
@@ -168,6 +195,7 @@ log(1+(2)^(3)*(2)^(cos(Math.PI/2))+(3)^(sin(Math.PI/2))+1+log(10))*3-->
             }
             var res = Process();
             alert(eval(res));
+            //alert(res);
         </script>
         <div id="result">1</div>
         <div id="result1">2</div>
