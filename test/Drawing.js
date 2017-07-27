@@ -36,21 +36,22 @@ function Axis(id) {
 function Drawing(id, str) {
     var w = document.getElementById(id).width;
     var h = document.getElementById(id).height;
+    str = str.replace(/ /g, "");
     var right = "";
     for(var i = 0; i < str.length; i++) {
         if(str[i] == "=")
             right = str.substr(i + 1);
     }
+
     var x = new Array;
     var y = new Array;
     for(var i = 0; i < 10000; i++) {
         x[i] = (w/10000) * i - (w/2);
-        var tmp = right.replace("x", (x[i]).toString());
+        var tmp = right.replace(/x/g, (x[i]).toString());
         y[i] = (eval(tmp));//modify
     }
-
+    
     Axis(id);
-
     var obj = document.getElementById(id);
     var cxt = obj.getContext("2d");
     for(var i = 1; i < 10000; i++) {
@@ -58,4 +59,5 @@ function Drawing(id, str) {
         cxt.lineTo(x[i] + w/2,h/2 - y[i]);
     }
     cxt.stroke();
+
 }

@@ -5,10 +5,10 @@
 *  understand and compute.             *
 ***************************************/
 
-var content = document.getElementById("grid").innerHTML;    //modify the "grid" to change what we want to transform
-var str = content;
+//var content = document.getElementById("grid").innerHTML;    //modify the "grid" to change what we want to transform
+//var str = content;
 
-function triProcessSelect(value) {
+function triProcessSelect(value, str) {
     var right = str;
     var left = "";
     while(right.indexOf(value) >= 0) {
@@ -23,15 +23,17 @@ function triProcessSelect(value) {
         right = right.substr(loc + 3);
     }
     str = left + right;
+    return str;
 }
 
-function  triProcess() { //trigonometric function
-    triProcessSelect("sin");
-    triProcessSelect("cos");
-    triProcessSelect("tan");
+function  triProcess(str) { //trigonometric function
+    str = triProcessSelect("sin", str);
+    str = triProcessSelect("cos", str);
+    str = triProcessSelect("tan", str);
+    return str;
 }
 
-function powProcess() {
+function powProcess(str) {
     var right = "";
     var left = "";
     var tmp = str;
@@ -75,9 +77,10 @@ function powProcess() {
 
     }
     str = tmp;
+    return str;
 }
 
-function lnProcess() {
+function lnProcess(str) {
     var right = str;
     var left = "";
     while(right.indexOf("ln") >= 0) {
@@ -88,9 +91,10 @@ function lnProcess() {
         right = right.substr(loc + 2);
     }
     str = left + right;
+    return str;
 }
 
-function lgProcess() {
+function lgProcess(str) {
     var tmp = str;
     while(tmp.indexOf("lg") >= 0) {
         var righttmp = 0;     
@@ -117,6 +121,7 @@ function lgProcess() {
 
     }
     str = tmp;
+    return str;
 }
 
 function factorial(n) {
@@ -128,7 +133,7 @@ function factorial(n) {
         return n * factorial(n-1);
 }
 
-function facProcess() { //factorial
+function facProcess(str) { //factorial
     var tmp = str;
     while(tmp.indexOf("!") > 0) {
         var loc = tmp.indexOf("!");
@@ -150,9 +155,10 @@ function facProcess() { //factorial
             + tmp.substr(loc + 1);
     }
     str = tmp;
+    return str;
 }
 
-function charProcess(value) {
+function charProcess(value, str) {
     var right = str;
     var left = "";
     var index = "";
@@ -172,18 +178,17 @@ function charProcess(value) {
         right = right.substr(loc + 1);
     }
     str = left + right;
+    return str;
 }
 
-function Process() {
-    triProcess();
-    powProcess();
-    lnProcess();
-    lgProcess();
-    facProcess();
-    charProcess("π");
-    charProcess("e");
-    if(parseFloat(eval(str)) != eval(str))
-        return "Error!";
-    else
-        return str;
+function Process(str) {
+    str = triProcess(str);
+    str = powProcess(str);
+    str = lnProcess(str);
+    str = lgProcess(str);
+    str = facProcess(str);
+    str = charProcess("π", str);
+    str = charProcess("e", str);
+    
+    return str;
 }

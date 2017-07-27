@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <canvas id="lll" width="1000" height="500" style="background-color:azure"></canvas>
+    </body>
+    <script type="text/javascript" src="https://www.nowapi.com/style/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="Process.js"></script>
+    <script type="text/javascript" src="Drawing.js"></script>
+    <script type="text/javascript">
+        var str = "y=(0.1*x)^(3)";
+        var res = Process(str);
+        Drawing("lll", res);
+    </script>
+</html>
