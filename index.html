@@ -171,10 +171,30 @@
             height: 75vh;
             margin: auto;
         }
-        /*calculator*/
-        /*section#calculator {
+        /*welcome-face*/
+        
+        div.main-container section#welcome.widget {
             display: block;
-        }*/
+        }
+        
+        div.main-container section#welcome.widget div.face {
+            box-shadow: none;
+            height: 80vh;
+            border-radius: 30px;
+            background: rgba(33, 99, 33, .4);
+            text-align: center;
+        }
+        div.main-container section#welcome.widget div.face img {
+            margin: 10vh 0;
+            width: 40%;
+            height: 40%;
+        }
+        div.main-container section#welcome.widget div.face p {
+            text-align: center;
+            font-size: 3.5em;
+            color: cadetblue;
+        }
+        /*calculator*/
         
         section#calculator div.face {
             background-color: #96c;
@@ -500,7 +520,7 @@
         
         section#graph div.mainface canvas {
             margin: 2vh auto;
-            transform: scale(.6);
+            transform: scale(.84);
             transform-origin: 0% 0%;
             float: left;
             border: 1px solid red;
@@ -581,7 +601,6 @@
             font-size: 1.2em;
             vertical-align: middle;
         }
-        
         /*rs-calculator*/
         
         section#rs-calculator div.face {
@@ -602,8 +621,10 @@
             font-weight: 700;
             font-size: 2em;
             padding: 10px;
-            color: #9c3;/**/
-            background: #6cc;/**/
+            color: #9c3;
+            /**/
+            background: #6cc;
+            /**/
             text-shadow: 2px 2px 2px #363;
         }
         
@@ -612,7 +633,7 @@
             font-weight: 500;
             font-size: 1.5em;
         }
-    
+        
         section#rs-calculator div.mainface form section,
         section#rs-calculator div.mainface form button,
         section#rs-calculator div.mainface>div {
@@ -622,7 +643,6 @@
         section#rs-calculator div.mainface form section {
             background: #9c3;
         }
-        
         
         section#rs-calculator div.mainface form input,
         section#rs-calculator div.mainface form select {
@@ -646,16 +666,15 @@
             padding: 1vh 1vw;
         }
         
-        section#rs-calculator div.mainface > div {
+        section#rs-calculator div.mainface>div {
             text-align: center;
             background: #69c;
         }
         
-        section#rs-calculator div.mainface > div > p {
+        section#rs-calculator div.mainface>div>p {
             font-size: 1.2em;
             vertical-align: middle;
         }
-        
         
         .clearfix:after {
             content: '';
@@ -691,6 +710,12 @@
             </nav>
         </header>
         <div class="main-container">
+            <section class="widget" id="welcome">
+                <div class="face">
+                    <img src="image/icon.png" />
+                    <p>Welcome to Calculator++</p>
+                </div>
+            </section>
             <section class="widget" id="calculator">
                 <div class="face">
                     <div class="mainface">
@@ -764,7 +789,7 @@
                             <p>NOTE: 函数形式为y=f(x) (Function form: y=f(x))<button>确认(Confirm)</button></p>
                         </div>
                         <div>
-                            <canvas id="func-image" width="1000px" height="500px" ></canvas>
+                            <canvas id="func-image" width="1000px" height="500px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -828,24 +853,28 @@
     </div>
     <script>
         $('#tocalculator').click(function() {
+            $('#welcome').fadeOut();
             $('#calculator').fadeIn();
             $('#graph').fadeOut();
             $('#er-calculator').fadeOut();
             $('#rs-calculator').fadeOut();
         });
         $('#tograph').click(function() {
+            $('#welcome').fadeOut();
             $('#calculator').fadeOut();
             $('#graph').fadeIn();
             $('#er-calculator').fadeOut();
             $('#rs-calculator').fadeOut();
         });
         $('#toer-calculator').click(function() {
+            $('#welcome').fadeOut();
             $('#calculator').fadeOut();
             $('#graph').fadeOut();
             $('#er-calculator').fadeIn();
             $('#rs-calculator').fadeOut();
         });
         $('#tors-calculator').click(function() {
+            $('#welcome').fadeOut();
             $('#calculator').fadeOut();
             $('#graph').fadeOut();
             $('#er-calculator').fadeOut();
