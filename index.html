@@ -163,7 +163,7 @@
             text-align: right;
             color: grey;
             font-size: 1.7em;
-            overflow: scroll;
+            overflow: hidden;
         }
         /*div.mainface #calculator-screen p#result i {
             font-size: .7em;
@@ -367,6 +367,11 @@
             clear: both;
         }
         
+        @media screen and (min-width: 1800px) {
+            section#calculator * {
+                font-size: 1.2em;
+            }
+        }
         @media screen and (max-width: 735px) {}
 
     </style>
@@ -381,10 +386,10 @@
             </section>
             <nav class="menu-bar">
                 <ul>
-                    <li><a href="#rn-calculator" id="rn-calculator">亲戚称呼计算</a></li>
-                    <li><a href="#er-calculator" id="toer-calculator">汇率计算</a></li>
-                    <li><a href="#graph" id="tograph">函数绘图</a></li>
-                    <li><a href="#calculator" id="tocalculator">普通计算</a></li>
+                    <li><a href="#rn-calculator" id="rn-calculator" onclick="javascript:alert(1);">亲戚称呼计算</a></li>
+                    <li><a href="#er-calculator" id="toer-calculator" onclick="javascript:alert(1);">汇率计算</a></li>
+                    <li><a href="#graph" id="tograph" onclick="javascript:alert(1);">函数绘图</a></li>
+                    <li><a href="#calculator" id="tocalculator" onclick="javascript:alert(1);">普通计算</a></li>
                 </ul>
             </nav>
         </header>
@@ -454,7 +459,9 @@
                 </div>
             </section>
             <section class="widget" id="graph">
-
+                <div>
+                    
+                </div>
             </section>
             <section class="widget" id="er-calculator">
 
@@ -464,6 +471,9 @@
             </section>
         </div>
     </div>
+    <script>
+        
+    </script>
 </body>
 
 </html>
