@@ -58,6 +58,7 @@
             left: 0;
             right: 0;
         }
+        
         header #title h1 {
             padding: 9px 12px 0;
             font-family: 'Latio', helvetica, sans-serif;
@@ -68,6 +69,7 @@
             letter-spacing: -.01em;
             color: #663;
         }
+        
         header #title h2 {
             padding: 5px 15px;
             font-family: fantasy;
@@ -84,15 +86,18 @@
             text-align: right;
             font-size: .8em;
         }
+        
         header nav.menu-bar>ul {
             display: inline-block;
         }
+        
         header nav.menu-bar li {
             margin: 10px 0;
             float: right;
             position: relative;
             box-shadow: 0 4px 5px #555;
         }
+        
         header nav.menu-bar li a {
             display: block;
             padding: .23em .8em;
@@ -103,26 +108,31 @@
             text-align: left;
             color: #cff;
         }
+        
         header nav.menu-bar li:first-child {
             background: #69f;
             border-bottom-right-radius: 10px;
         }
+        
         header nav.menu-bar li:nth-child(2) {
             background: #66f;
         }
+        
         header nav.menu-bar li:nth-child(3) {
             background: #65f;
         }
+        
         header nav.menu-bar li:last-child {
             background: #60f;
             border-top-left-radius: 10px;
         }
+        
         header nav.menu-bar li:hover {
             background: #6cf;
         }
         
         section#calculator {
-            z-index: 6;
+            z-index: 5;
             height: 80vh;
         }
         
@@ -133,13 +143,14 @@
             background-color: #96c;
             box-shadow: 8px 12px 5px #555;
         }
+        
         section#calculator div.face div.mainface {
             width: 98%;
             height: 80vh;
             margin: auto;
         }
         
-        div.mainface #calculator-screen {
+        section#calculator div.mainface #calculator-screen {
             width: 100%;
             height: 20%;
             text-align: center;
@@ -147,7 +158,8 @@
             border-radius: 5px;
             box-shadow: 2px 3px 5px #555 inset, 2px 4px 5px #555;
         }
-        div.mainface #calculator-screen input#expression {
+        
+        section#calculator div.mainface #calculator-screen input#expression {
             width: 100%;
             height: 70%;
             font-size: 2em;
@@ -157,7 +169,8 @@
             box-shadow: 1px 1px 5px #555;
             display: block;
         }
-        div.mainface #calculator-screen p#result {
+        
+        section#calculator div.mainface #calculator-screen p#result {
             height: 30%;
             width: 98%;
             text-align: right;
@@ -165,16 +178,17 @@
             font-size: 1.7em;
             overflow: hidden;
         }
-        /*div.mainface #calculator-screen p#result i {
+        /*section#calculator div.mainface #calculator-screen p#result i {
             font-size: .7em;
             text-shadow: 1px 1px 1px #555;
         }*/
         
-        div.mainface div.board {
+        section#calculator div.mainface div.board {
             height: 80%;
             width: 100%;
         }
-        div.mainface div.board div {
+        
+        section#calculator div.mainface div.board div {
             width: 100%;
             height: 8%;
             display: flex;
@@ -183,7 +197,8 @@
             padding: 1% 0;
             background: #969;
         }
-        div.mainface div.board button {
+        
+        section#calculator div.mainface div.board button {
             border-radius: 10px;
             box-shadow: 3px 5px 5px -2px #555;
             font-family: monospace;
@@ -191,55 +206,66 @@
             overflow: hidden;
             background: #ccc;
         }
-        div.mainface div.board button:hover {
+        
+        section#calculator div.mainface div.board button:hover {
             background: #ccf;
         }
-        div.mainface div.board button:active {
+        
+        section#calculator div.mainface div.board button:active {
             background: #cfc;
         }
         
-        div.mainface div.board div:first-child span button {
+        section#calculator div.mainface div.board div:first-child span button {
             background: #fc3;
         }
-        div.mainface div.board div:first-child span button:hover{
+        
+        section#calculator div.mainface div.board div:first-child span button:hover {
             background: #fc9;
         }
-        div.mainface div.board div:first-child span button:active {
+        
+        section#calculator div.mainface div.board div:first-child span button:active {
             background: #ff3;
         }
         
-        div.mainface div.board div:nth-child(2) span button {
+        section#calculator div.mainface div.board div:nth-child(2) span button {
             background: #9cc;
         }
-        div.mainface div.board div:nth-child(2) span button:hover{
+        
+        section#calculator div.mainface div.board div:nth-child(2) span button:hover {
             background: #9cf;
         }
-        div.mainface div.board div:nth-child(2) span button:active {
+        
+        section#calculator div.mainface div.board div:nth-child(2) span button:active {
             background: #9fc;
         }
         
-        div.mainface div.board div:nth-child(3) span button {
+        section#calculator div.mainface div.board div:nth-child(3) span button {
             background: #cc0;
         }
-        div.mainface div.board div:nth-child(3) span button:hover{
+        
+        section#calculator div.mainface div.board div:nth-child(3) span button:hover {
             background: #c66;
         }
-        div.mainface div.board div:nth-child(3) span button:active {
+        
+        section#calculator div.mainface div.board div:nth-child(3) span button:active {
             background: #cf0;
         }
         
-        div.mainface div.board span.button-tri {
+        section#calculator div.mainface div.board span.button-tri {
             padding: 1% 1%;
             width: 10%;
         }
-        div.mainface div.board span.button-tri button {
+        
+        section#calculator div.mainface div.board span.button-tri button {
             width: 80%;
             height: 80%;
         }
-        div.mainface div.board span.button-ud {
+        
+        section#calculator div.mainface div.board span.button-ud {
             width: 30%;
         }
-        div.mainface div.board span.button-ud button#up {
+        
+        section#calculator div.mainface div.board span.button-ud button#up {
             position: relative;
             top: -10%;
             border-left: 5vw solid transparent;
@@ -247,41 +273,58 @@
             border-bottom: 2.5vh solid #9c6;
             background: #939;
         }
-        div.mainface div.board span.button-ud button#up:hover {
+        
+        section#calculator div.mainface div.board span.button-ud button#up:hover {
             border-bottom: 2.5vh solid #9cc;
         }
-        div.mainface div.board span.button-ud button#up:active {
+        
+        section#calculator div.mainface div.board span.button-ud button#up:active {
             border-bottom: 2.5vh solid #9f6;
         }
-        div.mainface div.board span.button-log {
+        
+        section#calculator div.mainface div.board span.button-log {
             padding: 1% 1%;
             width: 20%;
         }
-        div.mainface div.board span.button-log button {
+        
+        section#calculator div.mainface div.board span.button-log button {
             width: 80%;
             height: 80%;
         }
         
-        div.mainface div.board span.button-cha {
+        section#calculator div.mainface div.board span.button-cha {
             width: 15%;
         }
-        div.mainface div.board span.button-cha button {
+        
+        section#calculator div.mainface div.board span.button-cha button {
             width: 80%;
             height: 80%;
         }
-        div.mainface div.board span.button-cur {
+        
+        section#calculator div.mainface div.board span.button-cur {
             width: 19%;
         }
-        div.mainface div.board span.button-cur:nth-child(4) {
+        
+        section#calculator div.mainface div.board span.button-cur:nth-child(4) {
             width: 15%;
         }
-        div.mainface div.board span.button-cur button#c-l {
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l {
             border-top: 2.5vh solid transparent;
             border-right: 5vw solid #cc0;
             border-bottom: 2.5vh solid transparent;
             background: #939;
         }
-        div.mainface div.board span.button-cur button#c-r {
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l:hover {
+            border-right: 5vw solid #c93;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l:active {
+            border-right: 5vw solid #cf0;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-r {
             border-top: 2.5vh solid transparent;
             border-left: 5vw solid #cc0;
             border-bottom: 2.5vh solid transparent;
@@ -289,23 +332,35 @@
             float: left;
         }
         
-        div.mainface div.board span.button-del {
+        section#calculator div.mainface div.board span.button-cur button#c-r:hover {
+            border-left: 5vw solid #c93;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-r:active {
+            border-left: 5vw solid #cf0;
+        }
+        
+        section#calculator div.mainface div.board span.button-del {
             width: 39%;
         }
-        div.mainface div.board span.button-del button {
+        
+        section#calculator div.mainface div.board span.button-del button {
             width: 80%;
             height: 70%;
             color: red;
             font-weight: bolder;
             font-size: 1.5em;
         }
-        div.mainface div.board span.button-del button#del {
+        
+        section#calculator div.mainface div.board span.button-del button#del {
             float: left;
         }
-        div.mainface div.board span.button-ud {
+        
+        section#calculator div.mainface div.board span.button-ud {
             width: 28%;
         }
-        div.mainface div.board span.button-ud button#dwn {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn {
             position: relative;
             top: 10%;
             left: -12%;
@@ -314,52 +369,63 @@
             border-top: 2.5vh solid #9c6;
             background: #939;
         }
-        div.mainface div.board span.button-ud button#dwn:hover {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn:hover {
             border-top: 2.5vh solid #9cc;
         }
-        div.mainface div.board span.button-ud button#dwn:active {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn:active {
             border-top: 2.5vh solid #9f6;
         }
         
-        div.mainface div.board table {
+        section#calculator div.mainface div.board table {
             width: 100%;
             height: 65%;
             background: #999;
             border-radius: 0 0 5px 5px / 0 0 5px 5px;
         }
-        div.mainface div.board table tr td{
+        
+        section#calculator div.mainface div.board table tr td {
             width: 26%;
             text-align: center;
         }
-        div.mainface div.board table tr td button {
+        
+        section#calculator div.mainface div.board table tr td button {
             width: 80%;
             height: 80%;
             font-size: 1.5em;
             background: #066;
         }
-        div.mainface div.board table tr td button:hover {
+        
+        section#calculator div.mainface div.board table tr td button:hover {
             background: #063;
         }
-        div.mainface div.board table tr td button:active {
+        
+        section#calculator div.mainface div.board table tr td button:active {
             background: #0c6;
         }
         
-        div.mainface div.board table tr:first-child td button,
-        div.mainface div.board table tr td:last-child button,
-        div.mainface div.board table tr:last-child td:first-child button{
+        section#calculator div.mainface div.board table tr:first-child td button,
+        section#calculator div.mainface div.board table tr td:last-child button,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button {
             background: #399;
         }
-        div.mainface div.board table tr:first-child td button:hover,
-        div.mainface div.board table tr td:last-child button:hover,
-        div.mainface div.board table tr:last-child td:first-child button:hover {
+        
+        section#calculator div.mainface div.board table tr:first-child td button:hover,
+        section#calculator div.mainface div.board table tr td:last-child button:hover,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button:hover {
             background: #369;
         }
-        div.mainface div.board table tr:first-child td button:active,
-        div.mainface div.board table tr td:last-child button:active,
-        div.mainface div.board table tr:last-child td:first-child button:active {
+        
+        section#calculator div.mainface div.board table tr:first-child td button:active,
+        section#calculator div.mainface div.board table tr td:last-child button:active,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button:active {
             background: #3f9;
         }
         
+        section {
+            z-index: 4;
+        }
         
         .clearfix:after {
             content: '';
@@ -372,6 +438,7 @@
                 font-size: 1.2em;
             }
         }
+        
         @media screen and (max-width: 735px) {}
 
     </style>
@@ -386,10 +453,10 @@
             </section>
             <nav class="menu-bar">
                 <ul>
-                    <li><a href="#rn-calculator" id="rn-calculator" onclick="javascript:alert(1);">亲戚称呼计算</a></li>
-                    <li><a href="#er-calculator" id="toer-calculator" onclick="javascript:alert(1);">汇率计算</a></li>
-                    <li><a href="#graph" id="tograph" onclick="javascript:alert(1);">函数绘图</a></li>
-                    <li><a href="#calculator" id="tocalculator" onclick="javascript:alert(1);">普通计算</a></li>
+                    <li><a href="#rn-calculator" id="rn-calculator" onclick="javascript:changeSection(4);">亲戚称呼计算</a></li>
+                    <li><a href="#er-calculator" id="toer-calculator" onclick="javascript:changeSection(3);">汇率计算</a></li>
+                    <li><a href="#graph" id="tograph" onclick="javascript:changeSection(2);">函数绘图</a></li>
+                    <li><a href="#calculator" id="tocalculator" onclick="javascript:changeSection(1);">普通计算</a></li>
                 </ul>
             </nav>
         </header>
@@ -460,7 +527,7 @@
             </section>
             <section class="widget" id="graph">
                 <div>
-                    
+
                 </div>
             </section>
             <section class="widget" id="er-calculator">
@@ -472,7 +539,35 @@
         </div>
     </div>
     <script>
-        
+        var cur_page = 1;
+
+        function changeSection(num) {
+            switch (cur_page) {
+                case 1:
+                    document.getElementById('calculator').style.zIndex = '4';
+                case 2:
+                    document.getElementById('graph').style.zIndex = '4';
+                case 3:
+                    document.getElementById('er-calculator').style.zIndex = '4';
+                case 4:
+                    document.getElementById('rn-calculator').style.zIndex = '4';
+            }
+            switch (num) {
+                case 1:
+                    document.getElementById('calculator').style.zIndex = '5';
+                    cur_page = 1;
+                case 2:
+                    document.getElementById('graph').style.zIndex = '5';
+                    cur_page = 2;
+                case 3:
+                    document.getElementById('er-calculator').style.zIndex = '5';
+                    cur_page = 3;
+                case 4:
+                    document.getElementById('rn-calculator').style.zIndex = '5';
+                    cur_page = 4;
+            }
+        }
+
     </script>
 </body>
 
