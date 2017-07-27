@@ -9,6 +9,8 @@
     <title>Calculator++</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="icon" href="image/icon.png" sizes="32x32" type="image/png" />
+    <script src="data/currency.js"></script>
+    <script type="text/javascript" src="https://www.nowapi.com/style/jquery/1.11.3/jquery.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -30,9 +32,12 @@
         
         body {
             width: 100%;
-            height: 100%;
             font-family: helvetica, arial, sans-serif;
-            background: linear-gradient(-45deg, #99f, #eee);
+            /*background: linear-gradient(#99f, #eee);
+            background-repeat: no-repeat;*/
+            background-image: url(image/bg1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         
         #wrapper {
@@ -40,6 +45,7 @@
             height: 100vh;
             margin: 0 auto 20px;
         }
+        /*-header-*/
         
         header {
             position: relative;
@@ -130,24 +136,36 @@
         header nav.menu-bar li:hover {
             background: #6cf;
         }
+        /*-div.main-container-*/
         
-        section#calculator {
-            z-index: 5;
+        div.main-container section.widget {
             height: 80vh;
+            width: 100%;
+            border-bottom: 5px dashed black;
+            position: absolute;
+            display: none;
         }
         
-        section#calculator div.face {
+        div.main-container section.widget div.face {
             width: 60%;
             margin: 25px auto;
             border-radius: 8px;
-            background-color: #96c;
             box-shadow: 8px 12px 5px #555;
         }
         
-        section#calculator div.face div.mainface {
+        div.main-container section.widget div.face div.mainface {
             width: 98%;
-            height: 80vh;
+            height: 75vh;
             margin: auto;
+        }
+        /*calculator*/
+        
+        section#calculator {
+            display: block;
+        }
+        
+        section#calculator div.face {
+            background-color: #96c;
         }
         
         section#calculator div.mainface #calculator-screen {
@@ -170,7 +188,7 @@
             display: block;
         }
         
-        section#calculator div.mainface #calculator-screen p#result {
+        section#calculator div.mainface #calculator-screen p.result {
             height: 30%;
             width: 98%;
             text-align: right;
@@ -422,11 +440,42 @@
         section#calculator div.mainface div.board table tr:last-child td:first-child button:active {
             background: #3f9;
         }
+        /*graph*/
         
-        section {
-            z-index: 4;
+        section#graph {}
+        /*er-calculator*/
+        
+        section#er-calculator div.face {
+            background: #6c6;
         }
         
+        section#er-calculator div.mainface {
+            background: #6cc;
+        }
+        section#er-calculator div.mainface form {
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+        }
+        section#er-calculator div.mainface form h2 {
+            font-weight: 700;
+            font-size: 2em;
+            padding: 10px;
+            color: #669;
+            background: #3cf;
+            text-shadow: 2px 2px 2px #555;
+        }
+        section#er-calculator div.mainface form label {
+            font-family: monospace;
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+        section#er-calculator div.mainface form label span {
+            color: red;
+        }
+        section#er-calculator div.mainface form input {
+            
+        }
         .clearfix:after {
             content: '';
             display: table;
@@ -453,10 +502,10 @@
             </section>
             <nav class="menu-bar">
                 <ul>
-                    <li><a href="#rn-calculator" id="rn-calculator" onclick="javascript:changeSection(4);">亲戚称呼计算</a></li>
-                    <li><a href="#er-calculator" id="toer-calculator" onclick="javascript:changeSection(3);">汇率计算</a></li>
-                    <li><a href="#graph" id="tograph" onclick="javascript:changeSection(2);">函数绘图</a></li>
-                    <li><a href="#calculator" id="tocalculator" onclick="javascript:changeSection(1);">普通计算</a></li>
+                    <li><a href="#rn-calculator" id="torn-calculator">亲戚称呼计算</a></li>
+                    <li><a href="#er-calculator" id="toer-calculator">汇率计算</a></li>
+                    <li><a href="#graph" id="tograph">函数绘图</a></li>
+                    <li><a href="#calculator" id="tocalculator">普通计算</a></li>
                 </ul>
             </nav>
         </header>
@@ -466,7 +515,7 @@
                     <div class="mainface">
                         <div class="screen" id="calculator-screen">
                             <input type="text" id="expression" name="expression" maxlength="150" />
-                            <p class="result" id="result">ERROR</p>
+                            <p class="result">ERROR</p>
                         </div>
                         <div class="board">
                             <div class="clearfix">
@@ -531,7 +580,31 @@
                 </div>
             </section>
             <section class="widget" id="er-calculator">
-
+                <div class="face">
+                    <div class="mainface">
+                        <form>
+                            <h2>REAL-TIME Exchange Rate Operator</h2>
+                            <section>
+                                <label for="amount">金额(Amount of money)<span> *</span></label>
+                                <input type="text" id="amount" name="amount" />
+                            </section>
+                            <section>
+                                <label for="ori-cur">原币种(FROM)<span> *</span></label>
+                                <select id="ori-cur" name="ori-cur">
+                                </select><br/>
+                                <label for="obj-cur">目标币种(TO)<span> *</span></label>
+                                <select id="obj-cur" name="obj-cur">
+                                </select>
+                            </section>
+                            <section>
+                                <button onclick="javascript:;">确认(Submit)</button>
+                            </section>
+                        </form>
+                        <div>
+                            <p class="result">结果(Result):<b id="ex-result"></b></p>
+                        </div>
+                    </div>
+                </div>
             </section>
             <section class="widget" id="rn-calculator">
 
@@ -539,34 +612,45 @@
         </div>
     </div>
     <script>
-        var cur_page = 1;
+        $('#tocalculator').click(function() {
+            $('#calculator').fadeIn();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeOut();
+            $('#rn-calculator').fadeOut();
+        });
+        $('#tograph').click(function() {
+            $('#calculator').fadeOut();
+            $('#graph').fadeIn();
+            $('#er-calculator').fadeOut();
+            $('#rn-calculator').fadeOut();
+        });
+        $('#toer-calculator').click(function() {
+            $('#calculator').fadeOut();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeIn();
+            $('#rn-calculator').fadeOut();
+        });
+        $('#torn-calculator').click(function() {
+            $('#calculator').fadeOut();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeOut();
+            $('#rn-calculator').fadeIn();
+        });
 
-        function changeSection(num) {
-            switch (cur_page) {
-                case 1:
-                    document.getElementById('calculator').style.zIndex = '4';
-                case 2:
-                    document.getElementById('graph').style.zIndex = '4';
-                case 3:
-                    document.getElementById('er-calculator').style.zIndex = '4';
-                case 4:
-                    document.getElementById('rn-calculator').style.zIndex = '4';
-            }
-            switch (num) {
-                case 1:
-                    document.getElementById('calculator').style.zIndex = '5';
-                    cur_page = 1;
-                case 2:
-                    document.getElementById('graph').style.zIndex = '5';
-                    cur_page = 2;
-                case 3:
-                    document.getElementById('er-calculator').style.zIndex = '5';
-                    cur_page = 3;
-                case 4:
-                    document.getElementById('rn-calculator').style.zIndex = '5';
-                    cur_page = 4;
+        function addCurrency(id, _select) {
+            for (let i of currency) {
+                let j = document.createElement("option");
+                j.nodeValue = i.curno;
+                j.innerHTML = i.curnm + '(' + i.curno + ')';
+                if (i.curno === _select) {
+                    j.selected = true;
+                }
+                document.getElementById(id).appendChild(j);
             }
         }
+
+        addCurrency('ori-cur', 'CNY');
+        addCurrency('obj-cur', 'USD');
 
     </script>
 </body>
