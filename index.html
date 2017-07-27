@@ -28,6 +28,20 @@
         
         button {
             outline: none;
+            background: #0cf;
+        }
+        
+        button:hover {
+            background: #39c;
+        }
+        
+        button:active {
+            background: #00f;
+        }
+        
+        input {
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
         }
         
         body {
@@ -141,7 +155,6 @@
         div.main-container section.widget {
             height: 80vh;
             width: 100%;
-            border-bottom: 5px dashed black;
             position: absolute;
             display: none;
         }
@@ -159,10 +172,9 @@
             margin: auto;
         }
         /*calculator*/
-        
-        section#calculator {
+        /*section#calculator {
             display: block;
-        }
+        }*/
         
         section#calculator div.face {
             background-color: #96c;
@@ -184,7 +196,6 @@
             text-align: right;
             background: rgba(144, 144, 96, .2);
             color: black;
-            box-shadow: 1px 1px 5px #555;
             display: block;
         }
         
@@ -442,7 +453,58 @@
         }
         /*graph*/
         
-        section#graph {}
+        section#graph div.face {
+            background: #3cf;
+        }
+        
+        section#graph div.mainface {
+            background: #66f;
+        }
+        
+        section#graph div.mainface div:first-child {
+            padding: 2vh 0 2vh;
+            border-radius: 8px;
+            background: #63c;
+            box-shadow: 1px 4px 2px -3px #555;
+        }
+        
+        section#graph div.mainface div label {
+            border-radius: 10px;
+            margin: 0 2vw 0 2vw;
+            padding: 1vh 1vw;
+            font-size: 1em;
+            font-weight: bold;
+            background: #69c;
+        }
+        
+        section#graph div.mainface div input {
+            height: 4vh;
+            width: 80%;
+            margin: 2vh auto;
+            display: block;
+            font-size: .9em;
+        }
+        
+        section#graph div.mainface div p {
+            border-radius: 10px;
+            text-align: center;
+            color: #69c;
+        }
+        
+        section#graph div.mainface div p button {
+            border-radius: 8px;
+            font-size: 1em;
+            padding: 4px 3px;
+            margin: 0 5px;
+        }
+        
+        section#graph div.mainface canvas {
+            margin: 2vh auto;
+            transform: scale(.6);
+            transform-origin: 0% 0%;
+            float: left;
+            border: 1px solid red;
+        }
         /*er-calculator*/
         
         section#er-calculator div.face {
@@ -452,30 +514,149 @@
         section#er-calculator div.mainface {
             background: #6cc;
         }
+        
         section#er-calculator div.mainface form {
             width: 100%;
             height: 80%;
             overflow: hidden;
         }
+        
         section#er-calculator div.mainface form h2 {
             font-weight: 700;
             font-size: 2em;
             padding: 10px;
             color: #669;
             background: #3cf;
-            text-shadow: 2px 2px 2px #555;
+            text-shadow: 2px 2px 2px #363;
         }
+        
         section#er-calculator div.mainface form label {
             font-family: monospace;
             font-weight: 500;
             font-size: 1.5em;
         }
+        
         section#er-calculator div.mainface form label span {
             color: red;
         }
-        section#er-calculator div.mainface form input {
-            
+        
+        section#er-calculator div.mainface form section,
+        section#er-calculator div.mainface form button,
+        section#er-calculator div.mainface>div {
+            border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
         }
+        
+        section#er-calculator div.mainface form section:nth-child(2) {
+            background: #199;
+        }
+        
+        section#er-calculator div.mainface form section:nth-child(3) {
+            background: #1c6;
+        }
+        
+        section#er-calculator div.mainface form input,
+        section#er-calculator div.mainface form select {
+            margin: 5% 5%;
+            font-size: 1em;
+            height: 4vh;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
+        }
+        
+        section#er-calculator div.mainface form button {
+            margin: 2vh 2vw;
+            width: 12vw;
+            height: 4vh;
+            font-size: 1em;
+        }
+        
+        section#er-calculator div.mainface>div {
+            text-align: center;
+            background: #69c;
+        }
+        
+        section#er-calculator div.mainface>div p {
+            height: 5vh;
+            width: 58vw;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        
+        /*rs-calculator*/
+        
+        section#rs-calculator div.face {
+            background: #cf0;
+        }
+        
+        section#rs-calculator div.mainface {
+            background: #cc0;
+        }
+        
+        section#rs-calculator div.mainface form {
+            width: 100%;
+            height: 60%;
+            overflow: hidden;
+        }
+        
+        section#rs-calculator div.mainface form h2 {
+            font-weight: 700;
+            font-size: 2em;
+            padding: 10px;
+            color: #9c3;/**/
+            background: #6cc;/**/
+            text-shadow: 2px 2px 2px #363;
+        }
+        
+        section#rs-calculator div.mainface form label {
+            font-family: monospace;
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+    
+        section#rs-calculator div.mainface form section,
+        section#rs-calculator div.mainface form button,
+        section#rs-calculator div.mainface>div {
+            border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
+        }
+        
+        section#rs-calculator div.mainface form section {
+            background: #9c3;
+        }
+        
+        
+        section#rs-calculator div.mainface form input,
+        section#rs-calculator div.mainface form select {
+            margin: 5% 5%;
+            font-size: 1em;
+            height: 4vh;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
+        }
+        
+        section#rs-calculator div.mainface form button {
+            margin: 2vh 2vw;
+            width: 12vw;
+            height: 4vh;
+            font-size: 1em;
+        }
+        
+        section#rs-calculator div.mainface form p {
+            border-radius: 5px;
+            background: #c96;
+            padding: 1vh 1vw;
+        }
+        
+        section#rs-calculator div.mainface > div {
+            text-align: center;
+            background: #69c;
+        }
+        
+        section#rs-calculator div.mainface > div > p {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        
+        
         .clearfix:after {
             content: '';
             display: table;
@@ -502,7 +683,7 @@
             </section>
             <nav class="menu-bar">
                 <ul>
-                    <li><a href="#rn-calculator" id="torn-calculator">亲戚称呼计算</a></li>
+                    <li><a href="#rs-calculator" id="tors-calculator">亲戚称呼计算</a></li>
                     <li><a href="#er-calculator" id="toer-calculator">汇率计算</a></li>
                     <li><a href="#graph" id="tograph">函数绘图</a></li>
                     <li><a href="#calculator" id="tocalculator">普通计算</a></li>
@@ -575,8 +756,17 @@
                 </div>
             </section>
             <section class="widget" id="graph">
-                <div>
-
+                <div class="face">
+                    <div class="mainface">
+                        <div>
+                            <label for="func-exp"> 函数表达式(Function expression): </label>
+                            <input type="text" id="func-exp" name="func-exp" />
+                            <p>NOTE: 函数形式为y=f(x) (Function form: y=f(x))<button>确认(Confirm)</button></p>
+                        </div>
+                        <div>
+                            <canvas id="func-image" width="1000px" height="500px" ></canvas>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="widget" id="er-calculator">
@@ -596,18 +786,43 @@
                                 <select id="obj-cur" name="obj-cur">
                                 </select>
                             </section>
-                            <section>
-                                <button onclick="javascript:;">确认(Submit)</button>
-                            </section>
+                            <button onclick="javascript:;">确认(Confirm)</button>
                         </form>
                         <div>
-                            <p class="result">结果(Result):<b id="ex-result"></b></p>
+                            <p class="result">结果(Result):<b id="ex-result">10</b></p>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="widget" id="rn-calculator">
-
+            <section class="widget" id="rs-calculator">
+                <div class="face">
+                    <div class="mainface">
+                        <form>
+                            <h2>Relative Salution Calculator</h2>
+                            <section>
+                                <label for="relation">[基本关系(Base Relation)]</label>
+                                <select id="relation" name="relation">
+                                    <option value="1">父亲</option>
+                                    <option value="2">母亲</option>
+                                    <option value="3">妻子</option>
+                                    <option value="4">丈夫</option>
+                                    <option value="5">哥哥</option>
+                                    <option value="6">弟弟</option>
+                                    <option value="7">姐姐</option>
+                                    <option value="7">妹妹</option>
+                                    <option value="7">儿子</option>
+                                    <option value="7">女儿</option>
+                                </select>
+                            </section>
+                            <button>添加(Add)</button>
+                            <button>确认(Confirm)</button>
+                            <p id="rl-tree">你</p>
+                        </form>
+                        <div>
+                            <p class="result">称为(Is called):<b id="rs-result">我 俺 本人 在下 鄙人fdsafasdfhflasdfasdjfiohdsljkfhsadlkhflasdkhfdsalkjfhsklh</b></p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
@@ -616,25 +831,25 @@
             $('#calculator').fadeIn();
             $('#graph').fadeOut();
             $('#er-calculator').fadeOut();
-            $('#rn-calculator').fadeOut();
+            $('#rs-calculator').fadeOut();
         });
         $('#tograph').click(function() {
             $('#calculator').fadeOut();
             $('#graph').fadeIn();
             $('#er-calculator').fadeOut();
-            $('#rn-calculator').fadeOut();
+            $('#rs-calculator').fadeOut();
         });
         $('#toer-calculator').click(function() {
             $('#calculator').fadeOut();
             $('#graph').fadeOut();
             $('#er-calculator').fadeIn();
-            $('#rn-calculator').fadeOut();
+            $('#rs-calculator').fadeOut();
         });
-        $('#torn-calculator').click(function() {
+        $('#tors-calculator').click(function() {
             $('#calculator').fadeOut();
             $('#graph').fadeOut();
             $('#er-calculator').fadeOut();
-            $('#rn-calculator').fadeIn();
+            $('#rs-calculator').fadeIn();
         });
 
         function addCurrency(id, _select) {
