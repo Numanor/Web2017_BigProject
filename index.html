@@ -402,29 +402,29 @@
                         </div>
                         <div class="board">
                             <div class="clearfix">
-                                <span class="button-tri"><button id="sin" onclick="sin()">sin</button></span>
-                                <span class="button-tri"><button id="cos" onclick="cos()">cos</button></span>
+                                <span class="button-tri"><button id="sin" onclick="add('sin()')">sin</button></span>
+                                <span class="button-tri"><button id="cos" onclick="add('cos()')">cos</button></span>
                                 <span class="button-tri"><button id="tan" onclick="javascript:">tan</button></span>
                                 <span class="button-ud"><button id="up" onclick="up()"></button></span>
                                 <span class="button-log"><button id="lg" onclick="javascript:">log</button></span>
                                 <span class="button-log"><button id="ln" onclick="javascript:">ln</button></span>
                             </div>
                             <div class="clearfix">
-                                <span class="button-cha"><button id="fac" onclick="javascript:">!</button></span>
+                                <span class="button-cha"><button id="fac" onclick="add('()!')">!</button></span>
                                 <span class="button-cha"><button id="pow" onclick="javascript:">^</button></span>
-                                <span class="button-cur"><button id="c-l" onclick="javascript:"></button></span>
-                                <span class="button-cur"><button id="c-r" onclick="javascript:"></button></span>
+                                <span class="button-cur"><button id="c-l" onclick="c_l()"></button></span>
+                                <span class="button-cur"><button id="c-r" onclick="c_r()"></button></span>
                                 <span class="button-cha"><button id="pai" onclick="javascript:">π</button></span>
                                 <span class="button-cha"><button id="nlg" onclick="javascript:">e</button></span>
                             </div>
                             <div class="clearfix">
-                                <span class="button-del"><button id="cle" onclick="javascript:">C</button></span>
+                                <span class="button-del"><button id="cle" onclick="cle()">C</button></span>
                                 <span class="button-ud"><button id="dwn" onclick="dwn()"></button></span>
-                                <span class="button-del"><button id="del" onclick="javascript:">DEL </button></span>
+                                <span class="button-del"><button id="del" onclick="del()">DEL </button></span>
                             </div>
                             <table>
                                 <tr>
-                                    <td><button id="plu" onclick="javascript:">+</button></td>
+                                    <td><button id="plu" onclick="add('+')">+</button></td>
                                     <td><button id="miu" onclick="javascript:">-</button></td>
                                     <td><button id="mul" onclick="javascript:">*</button></td>
                                     <td><button id="div" onclick="javascript:">/</button></td>
@@ -432,7 +432,7 @@
                                 <tr>
                                     <td><button id="sev" onclick="javascript:">7</button></td>
                                     <td><button id="egi" onclick="javascript:">8</button></td>
-                                    <td><button id="nin" onclick="javascript:">9</button></td>
+                                    <td><button id="nin" onclick="add('9')">9</button></td>
                                     <td><button id="ans" onclick="ans()">Ans</button></td>
                                 </tr>
                                 <tr>
@@ -473,4 +473,6 @@
 </body>
     <script type="text/javascript" src="js/button.js"></script>
     <script type="text/javascript" src="js/Process.js"></script>
+    <script type="text/javascript">
+    </script>
 </html>

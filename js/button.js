@@ -1,93 +1,59 @@
+if(localStorage.getItem('his') == null)
+    localStorage.setItem('his', "");
+if(localStorage.getItem("his_p") == null)
+    localStorage.setItem('his_p', '-1');
 
-var _history_cal = new Array();
-var _history_cal_p = 0;
 
-function sin() {
-    document.getElementById("expression").value += "sin()";
+//var _history_cal = new Array();
+//var _history_cal_p = 0;
+
+var _history_cal = localStorage.getItem('his').split(",");
+var _history_cal_p = parseInt(localStorage.getItem('his_p'));
+
+function getTxt1CursorPosition(){
+    var oTxt1 = document.getElementById("expression");
+    var cursurPosition = -1;
+    if(oTxt1.selectionStart) {//非IE浏览器
+        cursurPosition = oTxt1.selectionStart;
+    }
+    else {//IE
+        var range = document.selection.createRange();
+        range.moveStart("character",-oTxt1.value.length);
+        cursurPosition = range.text.length;
+    }
+    return cursurPosition;
 }
-function cos() {
-    document.getElementById("expression").value += "cos()";
+
+function add(value) {
+    if(document.getElementById("expression").value.length == 0)
+    {
+        document.getElementById("expression").value = value;
+        return ;
+    }
+    var loc = getTxt1CursorPosition();
+    var left = document.getElementById("expression").value.substr(0, loc);
+    var right = document.getElementById("expression").value.substr(loc);
+    document.getElementById("expression").value = left + value + right;
 }
-function tan() {
-    document.getElementById("expression").value += "tan()";
+
+function c_l() {
+    
 }
-function lg() {
-    document.getElementById("expression").value += "lg()";
+
+function c_r() {
+    
 }
-function ln() {
-    document.getElementById("expression").value += "ln()";
-}
-function fac() {
-    document.getElementById("expression").value += "()!";
-}
-function pow() {
-    document.getElementById("expression").value += "()^()";
-}
-function pai() {
-    document.getElementById("expression").value += "π";
-}
-function e() {
-    document.getElementById("expression").value += "e";
-}
+
 function cle() {
     document.getElementById("expression").value = "";
 }
 function del() {
-    var str = document.getElementById("expression").value;
-    str = str.substr(0, str.length - 1);
-    document.getElementById("expression").value = str;
+    var loc = getTxt1CursorPosition();
+    var left = document.getElementById("expression").value.substr(0, loc - 1);
+    var right = document.getElementById("expression").value.substr(loc);
+    document.getElementById("expression").value = left + right;
 }
-function plu() {
-    document.getElementById("expression").value += "+";
-}
-function miu() {
-    document.getElementById("expression").value += "-";
-}
-function mul() {
-    document.getElementById("expression").value += "*";
-}
-function div() {
-    document.getElementById("expression").value += "/";
-}
-function one() {
-    document.getElementById("expression").value += "1";
-}
-function two() {
-    document.getElementById("expression").value += "2";
-}
-function thr() {
-    document.getElementById("expression").value += "3";
-}
-function fou() {
-    document.getElementById("expression").value += "4";
-}
-function fiv() {
-    document.getElementById("expression").value += "5";
-}
-function six() {
-    document.getElementById("expression").value += "6";
-}
-function sev() {
-    document.getElementById("expression").value += "7";
-}
-function eig() {
-    document.getElementById("expression").value += "8";
-}
-function nin() {
-    document.getElementById("expression").value += "9";
-}
-function zer() {
-    document.getElementById("expression").value += "0";
-}
-function dot() {
-    document.getElementById("expression").value += ".";
-}
-function rig() {
-    document.getElementById("expression").value += "(";
-}
-function lef() {
-    document.getElementById("expression").value += ")";
-}
+
 function ans() {
     document.getElementById("expression").value += eval(_history_cal[_history_cal.length - 1]).toString();
 }
@@ -95,6 +61,7 @@ function up () {
     if(_history_cal_p == 0)
         return ;
     _history_cal_p--;
+    localStorage.setItem('his_p', _history_cal_p.toString());
     document.getElementById("expression").value = _history_cal[_history_cal_p];
 }
 
@@ -102,21 +69,19 @@ function dwn() {
     if(_history_cal_p == _history_cal.length - 1)
         return ;
     _history_cal_p++;
+    localStorage.setItem('his_p', _history_cal_p.toString());
     document.getElementById("expression").value = _history_cal[_history_cal_p];
 }
 function equ() {
     var str = document.getElementById("expression").value;
     _history_cal_p = _history_cal.push(str) - 1;
+    localStorage.setItem('his_p', _history_cal_p.toString());
+    var tmp = "";
+    for(var i = 0; i < _history_cal.length - 1; i++)
+        tmp += _history_cal[i] + ",";
+    tmp += _history_cal[_history_cal.length - 1];
+    localStorage.setItem('his', tmp);
     str = Process(str);
     var res = eval(str);
-//    var index = 0;
-//    while(res >= 10) {
-//        res = res/10;
-//        index++;
-//    }
-//    while(res < 1) {
-//        res = res * 10;
-//        index--;
-//    }
     document.getElementById("result").innerHTML = res;
 }
