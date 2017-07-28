@@ -90,19 +90,27 @@ function ans() {
     document.getElementById("expression").setSelectionRange(loc + len, loc + len);
 }
 function up () {
+    $("#expression").focus();
     if(_history_cal_p == 0)
         return ;
     _history_cal_p--;
     localStorage.setItem('his_p', _history_cal_p.toString());
     document.getElementById("expression").value = _history_cal[_history_cal_p];
+    var len = document.getElementById("expression").value.length;
+    loc = len;
+    document.getElementById("expression").setSelectionRange(len, len);
 }
 
 function dwn() {
+    $("#expression").focus();
     if(_history_cal_p == _history_cal.length - 1)
         return ;
     _history_cal_p++;
     localStorage.setItem('his_p', _history_cal_p.toString());
     document.getElementById("expression").value = _history_cal[_history_cal_p];
+    var len = document.getElementById("expression").value.length;
+    loc = len;
+    document.getElementById("expression").setSelectionRange(len, len);
 }
 function equ() {
     var str = document.getElementById("expression").value;
