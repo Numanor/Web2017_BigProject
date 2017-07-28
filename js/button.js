@@ -55,7 +55,15 @@ function del() {
 }
 
 function ans() {
-    document.getElementById("expression").value += eval(_history_cal[_history_cal.length - 1]).toString();
+    if(document.getElementById("expression").value.length == 0)
+    {
+        document.getElementById("expression").value = value;
+        return ;
+    }
+    var loc = getTxt1CursorPosition();
+    var left = document.getElementById("expression").value.substr(0, loc);
+    var right = document.getElementById("expression").value.substr(loc);
+    document.getElementById("expression").value = left + eval(_history_cal[_history_cal.length - 1]).toString() + right;
 }
 function up () {
     if(_history_cal_p == 0)

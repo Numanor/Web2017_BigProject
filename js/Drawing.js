@@ -34,6 +34,7 @@ function Axis(id) {
 }
 
 function Drawing(id, str) {
+    str = Process(str);
     var w = document.getElementById(id).width;
     var h = document.getElementById(id).height;
     var right = "";

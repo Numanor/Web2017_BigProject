@@ -3,10 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<script type="text/javascript" src="https://www.nowapi.com/style/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+<body>
+    <div id="ex-result">1</div>
+    <button onclick="getValue('USD', 'CNY')">8888</button>
+</body>
+    <script type="text/javascript" src="https://www.nowapi.com/style/jquery/1.11.3/jquery.min.js"></script>
 <script>
+    
 function getValue(scur, tcur){
-     $.ajax({
+    var res = 0;
+    $.ajax({
         type          : 'get',
         async         : false,
         url           : 
@@ -19,25 +27,24 @@ function getValue(scur, tcur){
                 alert(data.msgid+' '+data.msg);
                 exit;
             }
+            res = Number(data.result.rate);
+            document.getElementById("ex-result").innerHTML = Number(document.getElementById("amount").value) + "  " + ori + "  =  " 
+                                                           + Number(document.getElementById("amount").value) * res + "  " + obj ;
+            alert(document.getElementById("ex-result").innerHTML);
             //遍历
             var description = "";
             for(var i in data.result){
                 var property=data.result[i];
                 description+=i+" = "+property+"\n";
             }
-            alert(parseFloat(data.result.rate));
         },
         error:function(){
             alert('fail');
         }
     });
-    return parseFloat(data.result.rate);
-};
+}
 
-var num = getValue("THB", "CNY");
-alert(num);
+
+
 </script>
-</head>
-<body>
-</body>
 </html>

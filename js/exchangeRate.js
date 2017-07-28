@@ -5,34 +5,24 @@
 *currency.                                                                *
 **************************************************************************/
 
-
-function getValue(scur, tcur){
-     $.ajax({
+function getValue(scur, tcur, left){
+    var res = 0;
+    $.ajax({
         type          : 'get',
         async         : false,
         url           : 
-         'http://api.k780.com/?app=finance.rate&scur=' + scur + '&tcur=' + tcur + '&appkey=27095&sign=1c57140e0be0de23e95e22ed7a62746e&format=json&jsoncallback=data',
+         'http://api.k780.com/?app=finance.rate&scur=' + scur + '&tcur=' + tcur + '&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&jsoncallback=data',
         dataType      : 'jsonp',
         jsonp         : 'callback',
         jsonpCallback : 'data',
         success       : function(data){
-            if(data.success!='1'){
-                alert(data.msgid+' '+data.msg);
-                exit;
-            }
-            //遍历
-            var description = "";
-            for(var i in data.result){
-                var property=data.result[i];
-                description+=i+" = "+property+"\n";
-            }
-            alert(parseFloat(data.result.rate));
+            res = Number(data.result.rate);
+            alert(res);
+            //alert(left + "  " + scur + "  =  " + left * rate + "  " + tcur);
         },
         error:function(){
             alert('fail');
         }
     });
-    return parseFloat(data.result.rate);
-};
+}
 
-var num = getValue("THB", "CNY");

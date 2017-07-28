@@ -9,6 +9,8 @@
     <title>Calculator++</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="icon" href="image/icon.png" sizes="32x32" type="image/png" />
+    <script src="data/currency.js"></script>
+    <script type="text/javascript" src="https://www.nowapi.com/style/jquery/1.11.3/jquery.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -26,13 +28,30 @@
         
         button {
             outline: none;
+            background: #0cf;
+        }
+        
+        button:hover {
+            background: #39c;
+        }
+        
+        button:active {
+            background: #00f;
+        }
+        
+        input {
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
         }
         
         body {
             width: 100%;
-            height: 100%;
             font-family: helvetica, arial, sans-serif;
-            background: linear-gradient(-45deg, #99f, #eee);
+            /*background: linear-gradient(#99f, #eee);
+            background-repeat: no-repeat;*/
+            background-image: url(image/bg1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         
         #wrapper {
@@ -40,6 +59,7 @@
             height: 100vh;
             margin: 0 auto 20px;
         }
+        /*-header-*/
         
         header {
             position: relative;
@@ -58,6 +78,7 @@
             left: 0;
             right: 0;
         }
+        
         header #title h1 {
             padding: 9px 12px 0;
             font-family: 'Latio', helvetica, sans-serif;
@@ -68,6 +89,7 @@
             letter-spacing: -.01em;
             color: #663;
         }
+        
         header #title h2 {
             padding: 5px 15px;
             font-family: fantasy;
@@ -84,15 +106,18 @@
             text-align: right;
             font-size: .8em;
         }
+        
         header nav.menu-bar>ul {
             display: inline-block;
         }
+        
         header nav.menu-bar li {
             margin: 10px 0;
             float: right;
             position: relative;
             box-shadow: 0 4px 5px #555;
         }
+        
         header nav.menu-bar li a {
             display: block;
             padding: .23em .8em;
@@ -103,43 +128,79 @@
             text-align: left;
             color: #cff;
         }
+        
         header nav.menu-bar li:first-child {
             background: #69f;
             border-bottom-right-radius: 10px;
         }
+        
         header nav.menu-bar li:nth-child(2) {
             background: #66f;
         }
+        
         header nav.menu-bar li:nth-child(3) {
             background: #65f;
         }
+        
         header nav.menu-bar li:last-child {
             background: #60f;
             border-top-left-radius: 10px;
         }
+        
         header nav.menu-bar li:hover {
             background: #6cf;
         }
+        /*-div.main-container-*/
         
-        section#calculator {
-            z-index: 6;
+        div.main-container section.widget {
             height: 80vh;
+            width: 100%;
+            position: absolute;
+            display: none;
         }
         
-        section#calculator div.face {
+        div.main-container section.widget div.face {
             width: 60%;
             margin: 25px auto;
             border-radius: 8px;
-            background-color: #96c;
             box-shadow: 8px 12px 5px #555;
         }
-        section#calculator div.face div.mainface {
+        
+        div.main-container section.widget div.face div.mainface {
             width: 98%;
-            height: 80vh;
+            height: 75vh;
             margin: auto;
         }
+        /*welcome-face*/
         
-        div.mainface #calculator-screen {
+        div.main-container section#welcome.widget {
+            display: block;
+        }
+        
+        div.main-container section#welcome.widget div.face {
+            box-shadow: none;
+            height: 80vh;
+            border-radius: 30px;
+            background: rgba(33, 99, 33, .4);
+            text-align: center;
+        }
+        div.main-container section#welcome.widget div.face img {
+            margin: 10vh 0;
+            width: 40%;
+            height: 40%;
+        }
+        div.main-container section#welcome.widget div.face p {
+            text-align: center;
+            font-size: 3.5em;
+            color: cadetblue;
+        }
+        /*calculator*/
+        
+        section#calculator div.face {
+            background-color: #96c;
+        }
+        
+        section#calculator div.mainface #calculator-screen {
             width: 100%;
             height: 20%;
             text-align: center;
@@ -147,17 +208,18 @@
             border-radius: 5px;
             box-shadow: 2px 3px 5px #555 inset, 2px 4px 5px #555;
         }
-        div.mainface #calculator-screen input#expression {
+        
+        section#calculator div.mainface #calculator-screen input#expression {
             width: 100%;
             height: 70%;
             font-size: 2em;
             text-align: right;
             background: rgba(144, 144, 96, .2);
             color: black;
-            box-shadow: 1px 1px 5px #555;
             display: block;
         }
-        div.mainface #calculator-screen p#result {
+        
+        section#calculator div.mainface #calculator-screen p.result {
             height: 30%;
             width: 98%;
             text-align: right;
@@ -165,16 +227,17 @@
             font-size: 1.7em;
             overflow: hidden;
         }
-        /*div.mainface #calculator-screen p#result i {
+        /*section#calculator div.mainface #calculator-screen p#result i {
             font-size: .7em;
             text-shadow: 1px 1px 1px #555;
         }*/
         
-        div.mainface div.board {
+        section#calculator div.mainface div.board {
             height: 80%;
             width: 100%;
         }
-        div.mainface div.board div {
+        
+        section#calculator div.mainface div.board div {
             width: 100%;
             height: 8%;
             display: flex;
@@ -183,7 +246,8 @@
             padding: 1% 0;
             background: #969;
         }
-        div.mainface div.board button {
+        
+        section#calculator div.mainface div.board button {
             border-radius: 10px;
             box-shadow: 3px 5px 5px -2px #555;
             font-family: monospace;
@@ -191,55 +255,66 @@
             overflow: hidden;
             background: #ccc;
         }
-        div.mainface div.board button:hover {
+        
+        section#calculator div.mainface div.board button:hover {
             background: #ccf;
         }
-        div.mainface div.board button:active {
+        
+        section#calculator div.mainface div.board button:active {
             background: #cfc;
         }
         
-        div.mainface div.board div:first-child span button {
+        section#calculator div.mainface div.board div:first-child span button {
             background: #fc3;
         }
-        div.mainface div.board div:first-child span button:hover{
+        
+        section#calculator div.mainface div.board div:first-child span button:hover {
             background: #fc9;
         }
-        div.mainface div.board div:first-child span button:active {
+        
+        section#calculator div.mainface div.board div:first-child span button:active {
             background: #ff3;
         }
         
-        div.mainface div.board div:nth-child(2) span button {
+        section#calculator div.mainface div.board div:nth-child(2) span button {
             background: #9cc;
         }
-        div.mainface div.board div:nth-child(2) span button:hover{
+        
+        section#calculator div.mainface div.board div:nth-child(2) span button:hover {
             background: #9cf;
         }
-        div.mainface div.board div:nth-child(2) span button:active {
+        
+        section#calculator div.mainface div.board div:nth-child(2) span button:active {
             background: #9fc;
         }
         
-        div.mainface div.board div:nth-child(3) span button {
+        section#calculator div.mainface div.board div:nth-child(3) span button {
             background: #cc0;
         }
-        div.mainface div.board div:nth-child(3) span button:hover{
+        
+        section#calculator div.mainface div.board div:nth-child(3) span button:hover {
             background: #c66;
         }
-        div.mainface div.board div:nth-child(3) span button:active {
+        
+        section#calculator div.mainface div.board div:nth-child(3) span button:active {
             background: #cf0;
         }
         
-        div.mainface div.board span.button-tri {
+        section#calculator div.mainface div.board span.button-tri {
             padding: 1% 1%;
             width: 10%;
         }
-        div.mainface div.board span.button-tri button {
+        
+        section#calculator div.mainface div.board span.button-tri button {
             width: 80%;
             height: 80%;
         }
-        div.mainface div.board span.button-ud {
+        
+        section#calculator div.mainface div.board span.button-ud {
             width: 30%;
         }
-        div.mainface div.board span.button-ud button#up {
+        
+        section#calculator div.mainface div.board span.button-ud button#up {
             position: relative;
             top: -10%;
             border-left: 5vw solid transparent;
@@ -247,41 +322,58 @@
             border-bottom: 2.5vh solid #9c6;
             background: #939;
         }
-        div.mainface div.board span.button-ud button#up:hover {
+        
+        section#calculator div.mainface div.board span.button-ud button#up:hover {
             border-bottom: 2.5vh solid #9cc;
         }
-        div.mainface div.board span.button-ud button#up:active {
+        
+        section#calculator div.mainface div.board span.button-ud button#up:active {
             border-bottom: 2.5vh solid #9f6;
         }
-        div.mainface div.board span.button-log {
+        
+        section#calculator div.mainface div.board span.button-log {
             padding: 1% 1%;
             width: 20%;
         }
-        div.mainface div.board span.button-log button {
+        
+        section#calculator div.mainface div.board span.button-log button {
             width: 80%;
             height: 80%;
         }
         
-        div.mainface div.board span.button-cha {
+        section#calculator div.mainface div.board span.button-cha {
             width: 15%;
         }
-        div.mainface div.board span.button-cha button {
+        
+        section#calculator div.mainface div.board span.button-cha button {
             width: 80%;
             height: 80%;
         }
-        div.mainface div.board span.button-cur {
+        
+        section#calculator div.mainface div.board span.button-cur {
             width: 19%;
         }
-        div.mainface div.board span.button-cur:nth-child(4) {
+        
+        section#calculator div.mainface div.board span.button-cur:nth-child(4) {
             width: 15%;
         }
-        div.mainface div.board span.button-cur button#c-l {
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l {
             border-top: 2.5vh solid transparent;
             border-right: 5vw solid #cc0;
             border-bottom: 2.5vh solid transparent;
             background: #939;
         }
-        div.mainface div.board span.button-cur button#c-r {
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l:hover {
+            border-right: 5vw solid #c93;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-l:active {
+            border-right: 5vw solid #cf0;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-r {
             border-top: 2.5vh solid transparent;
             border-left: 5vw solid #cc0;
             border-bottom: 2.5vh solid transparent;
@@ -289,23 +381,35 @@
             float: left;
         }
         
-        div.mainface div.board span.button-del {
+        section#calculator div.mainface div.board span.button-cur button#c-r:hover {
+            border-left: 5vw solid #c93;
+        }
+        
+        section#calculator div.mainface div.board span.button-cur button#c-r:active {
+            border-left: 5vw solid #cf0;
+        }
+        
+        section#calculator div.mainface div.board span.button-del {
             width: 39%;
         }
-        div.mainface div.board span.button-del button {
+        
+        section#calculator div.mainface div.board span.button-del button {
             width: 80%;
             height: 70%;
             color: red;
             font-weight: bolder;
             font-size: 1.5em;
         }
-        div.mainface div.board span.button-del button#del {
+        
+        section#calculator div.mainface div.board span.button-del button#del {
             float: left;
         }
-        div.mainface div.board span.button-ud {
+        
+        section#calculator div.mainface div.board span.button-ud {
             width: 28%;
         }
-        div.mainface div.board span.button-ud button#dwn {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn {
             position: relative;
             top: 10%;
             left: -12%;
@@ -314,52 +418,263 @@
             border-top: 2.5vh solid #9c6;
             background: #939;
         }
-        div.mainface div.board span.button-ud button#dwn:hover {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn:hover {
             border-top: 2.5vh solid #9cc;
         }
-        div.mainface div.board span.button-ud button#dwn:active {
+        
+        section#calculator div.mainface div.board span.button-ud button#dwn:active {
             border-top: 2.5vh solid #9f6;
         }
         
-        div.mainface div.board table {
+        section#calculator div.mainface div.board table {
             width: 100%;
             height: 65%;
             background: #999;
             border-radius: 0 0 5px 5px / 0 0 5px 5px;
         }
-        div.mainface div.board table tr td{
+        
+        section#calculator div.mainface div.board table tr td {
             width: 26%;
             text-align: center;
         }
-        div.mainface div.board table tr td button {
+        
+        section#calculator div.mainface div.board table tr td button {
             width: 80%;
             height: 80%;
             font-size: 1.5em;
             background: #066;
         }
-        div.mainface div.board table tr td button:hover {
+        
+        section#calculator div.mainface div.board table tr td button:hover {
             background: #063;
         }
-        div.mainface div.board table tr td button:active {
+        
+        section#calculator div.mainface div.board table tr td button:active {
             background: #0c6;
         }
         
-        div.mainface div.board table tr:first-child td button,
-        div.mainface div.board table tr td:last-child button,
-        div.mainface div.board table tr:last-child td:first-child button{
+        section#calculator div.mainface div.board table tr:first-child td button,
+        section#calculator div.mainface div.board table tr td:last-child button,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button {
             background: #399;
         }
-        div.mainface div.board table tr:first-child td button:hover,
-        div.mainface div.board table tr td:last-child button:hover,
-        div.mainface div.board table tr:last-child td:first-child button:hover {
+        
+        section#calculator div.mainface div.board table tr:first-child td button:hover,
+        section#calculator div.mainface div.board table tr td:last-child button:hover,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button:hover {
             background: #369;
         }
-        div.mainface div.board table tr:first-child td button:active,
-        div.mainface div.board table tr td:last-child button:active,
-        div.mainface div.board table tr:last-child td:first-child button:active {
+        
+        section#calculator div.mainface div.board table tr:first-child td button:active,
+        section#calculator div.mainface div.board table tr td:last-child button:active,
+        section#calculator div.mainface div.board table tr:last-child td:first-child button:active {
             background: #3f9;
         }
+        /*graph*/
         
+        section#graph div.face {
+            background: #3cf;
+        }
+        
+        section#graph div.mainface {
+            background: #66f;
+        }
+        
+        section#graph div.mainface div:first-child {
+            padding: 2vh 0 2vh;
+            border-radius: 8px;
+            background: #63c;
+            box-shadow: 1px 4px 2px -3px #555;
+        }
+        
+        section#graph div.mainface div label {
+            border-radius: 10px;
+            margin: 0 2vw 0 2vw;
+            padding: 1vh 1vw;
+            font-size: 1em;
+            font-weight: bold;
+            background: #69c;
+        }
+        
+        section#graph div.mainface div input {
+            height: 4vh;
+            width: 80%;
+            margin: 2vh auto;
+            display: block;
+            font-size: .9em;
+        }
+        
+        section#graph div.mainface div p {
+            border-radius: 10px;
+            text-align: center;
+            color: #69c;
+        }
+        
+        section#graph div.mainface div p button {
+            border-radius: 8px;
+            font-size: 1em;
+            padding: 4px 3px;
+            margin: 0 5px;
+        }
+        
+        section#graph div.mainface canvas {
+            margin: 2vh auto;
+            transform: scale(.84);
+            transform-origin: 0% 0%;
+            float: left;
+            border: 1px solid red;
+        }
+        /*er-calculator*/
+        
+        section#er-calculator div.face {
+            background: #6c6;
+        }
+        
+        section#er-calculator div.mainface {
+            background: #6cc;
+        }
+        
+        section#er-calculator div.mainface form {
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+        }
+        
+        section#er-calculator div.mainface form h2 {
+            font-weight: 700;
+            font-size: 2em;
+            padding: 10px;
+            color: #669;
+            background: #3cf;
+            text-shadow: 2px 2px 2px #363;
+        }
+        
+        section#er-calculator div.mainface form label {
+            font-family: monospace;
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+        
+        section#er-calculator div.mainface form label span {
+            color: red;
+        }
+        
+        section#er-calculator div.mainface form section,
+        section#er-calculator div.mainface form button,
+        section#er-calculator div.mainface>div {
+            border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
+        }
+        
+        section#er-calculator div.mainface form section:nth-child(2) {
+            background: #199;
+        }
+        
+        section#er-calculator div.mainface form section:nth-child(3) {
+            background: #1c6;
+        }
+        
+        section#er-calculator div.mainface form input,
+        section#er-calculator div.mainface form select {
+            margin: 5% 5%;
+            font-size: 1em;
+            height: 4vh;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
+        }
+        
+        section#er-calculator div.mainface form button {
+            margin: 2vh 2vw;
+            width: 12vw;
+            height: 4vh;
+            font-size: 1em;
+        }
+        
+        section#er-calculator div.mainface>div {
+            text-align: center;
+            background: #69c;
+        }
+        
+        section#er-calculator div.mainface>div p {
+            height: 5vh;
+            width: 58vw;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        /*rs-calculator*/
+        
+        section#rs-calculator div.face {
+            background: #cf0;
+        }
+        
+        section#rs-calculator div.mainface {
+            background: #cc0;
+        }
+        
+        section#rs-calculator div.mainface form {
+            width: 100%;
+            height: 60%;
+            overflow: hidden;
+        }
+        
+        section#rs-calculator div.mainface form h2 {
+            font-weight: 700;
+            font-size: 2em;
+            padding: 10px;
+            color: #9c3;
+            /**/
+            background: #6cc;
+            /**/
+            text-shadow: 2px 2px 2px #363;
+        }
+        
+        section#rs-calculator div.mainface form label {
+            font-family: monospace;
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+        
+        section#rs-calculator div.mainface form section,
+        section#rs-calculator div.mainface form button,
+        section#rs-calculator div.mainface>div {
+            border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
+        }
+        
+        section#rs-calculator div.mainface form section {
+            background: #9c3;
+        }
+        
+        section#rs-calculator div.mainface form input,
+        section#rs-calculator div.mainface form select {
+            margin: 5% 5%;
+            font-size: 1em;
+            height: 4vh;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #555 inset;
+        }
+        
+        section#rs-calculator div.mainface form button {
+            margin: 2vh 2vw;
+            width: 12vw;
+            height: 4vh;
+            font-size: 1em;
+        }
+        
+        section#rs-calculator div.mainface form p {
+            border-radius: 5px;
+            background: #c96;
+            padding: 1vh 1vw;
+        }
+        
+        section#rs-calculator div.mainface>div {
+            text-align: center;
+            background: #69c;
+        }
+        
+        section#rs-calculator div.mainface>div>p {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
         
         .clearfix:after {
             content: '';
@@ -372,6 +687,7 @@
                 font-size: 1.2em;
             }
         }
+        
         @media screen and (max-width: 735px) {}
     </style>
 </head>
@@ -385,37 +701,43 @@
             </section>
             <nav class="menu-bar">
                 <ul>
-                    <li><a href="#rn-calculator" id="rn-calculator" onclick="javascript:alert(1);">亲戚称呼计算</a></li>
-                    <li><a href="#er-calculator" id="toer-calculator" onclick="javascript:alert(1);">汇率计算</a></li>
-                    <li><a href="#graph" id="tograph" onclick="javascript:alert(1);">函数绘图</a></li>
-                    <li><a href="#calculator" id="tocalculator" onclick="javascript:alert(1);">普通计算</a></li>
+                    <li><a href="#rs-calculator" id="tors-calculator">亲戚称呼计算</a></li>
+                    <li><a href="#er-calculator" id="toer-calculator">汇率计算</a></li>
+                    <li><a href="#graph" id="tograph">函数绘图</a></li>
+                    <li><a href="#calculator" id="tocalculator">普通计算</a></li>
                 </ul>
             </nav>
         </header>
         <div class="main-container">
+            <section class="widget" id="welcome">
+                <div class="face">
+                    <img src="image/icon.png" />
+                    <p>Welcome to Calculator++</p>
+                </div>
+            </section>
             <section class="widget" id="calculator">
                 <div class="face">
                     <div class="mainface">
                         <div class="screen" id="calculator-screen">
                             <input type="text" id="expression" name="expression" maxlength="150" />
-                            <p class="result" id="result">ERROR</p>
+                            <p class="result" id="result">0</p>
                         </div>
                         <div class="board">
                             <div class="clearfix">
                                 <span class="button-tri"><button id="sin" onclick="add('sin()')">sin</button></span>
                                 <span class="button-tri"><button id="cos" onclick="add('cos()')">cos</button></span>
-                                <span class="button-tri"><button id="tan" onclick="javascript:">tan</button></span>
+                                <span class="button-tri"><button id="tan" onclick="add('tan()')">tan</button></span>
                                 <span class="button-ud"><button id="up" onclick="up()"></button></span>
-                                <span class="button-log"><button id="lg" onclick="javascript:">log</button></span>
-                                <span class="button-log"><button id="ln" onclick="javascript:">ln</button></span>
+                                <span class="button-log"><button id="lg" onclick="add('lg()')">log</button></span>
+                                <span class="button-log"><button id="ln" onclick="add('ln()')">ln</button></span>
                             </div>
                             <div class="clearfix">
                                 <span class="button-cha"><button id="fac" onclick="add('()!')">!</button></span>
-                                <span class="button-cha"><button id="pow" onclick="javascript:">^</button></span>
-                                <span class="button-cur"><button id="c-l" onclick="c_l()"></button></span>
-                                <span class="button-cur"><button id="c-r" onclick="c_r()"></button></span>
-                                <span class="button-cha"><button id="pai" onclick="javascript:">π</button></span>
-                                <span class="button-cha"><button id="nlg" onclick="javascript:">e</button></span>
+                                <span class="button-cha"><button id="pow" onclick="add('()^()')">^</button></span>
+                                <span class="button-cur"><button id="c-l" onclick=""></button></span>
+                                <span class="button-cur"><button id="c-r" onclick="javascript:"></button></span>
+                                <span class="button-cha"><button id="pai" onclick="add('π')">π</button></span>
+                                <span class="button-cha"><button id="nlg" onclick="add('e')">e</button></span>
                             </div>
                             <div class="clearfix">
                                 <span class="button-del"><button id="cle" onclick="cle()">C</button></span>
@@ -425,32 +747,32 @@
                             <table>
                                 <tr>
                                     <td><button id="plu" onclick="add('+')">+</button></td>
-                                    <td><button id="miu" onclick="javascript:">-</button></td>
-                                    <td><button id="mul" onclick="javascript:">*</button></td>
-                                    <td><button id="div" onclick="javascript:">/</button></td>
+                                    <td><button id="miu" onclick="add('-')">-</button></td>
+                                    <td><button id="mul" onclick="add('*')">*</button></td>
+                                    <td><button id="div" onclick="add('/')">/</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button id="sev" onclick="javascript:">7</button></td>
-                                    <td><button id="egi" onclick="javascript:">8</button></td>
+                                    <td><button id="sev" onclick="add('7')">7</button></td>
+                                    <td><button id="egi" onclick="add('8')">8</button></td>
                                     <td><button id="nin" onclick="add('9')">9</button></td>
                                     <td><button id="ans" onclick="ans()">Ans</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button id="fou" onclick="javascript:">4</button></td>
-                                    <td><button id="fiv" onclick="javascript:">5</button></td>
-                                    <td><button id="six" onclick="javascript:">6</button></td>
-                                    <td><button id="dot" onclick="javascript:">.</button></td>
+                                    <td><button id="fou" onclick="add('4')">4</button></td>
+                                    <td><button id="fiv" onclick="add('5')">5</button></td>
+                                    <td><button id="six" onclick="add('6')">6</button></td>
+                                    <td><button id="dot" onclick="add('.')">.</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button id="one" onclick="javascript:">1</button></td>
-                                    <td><button id="two" onclick="javascript:">2</button></td>
-                                    <td><button id="thr" onclick="javascript:">3</button></td>
+                                    <td><button id="one" onclick="add('1')">1</button></td>
+                                    <td><button id="two" onclick="add('2')">2</button></td>
+                                    <td><button id="thr" onclick="add('3')">3</button></td>
                                     <td rowspan="2"><button id="equ" onclick="equ()">=</button></td>
                                 </tr>
                                 <tr>
-                                    <td><button id="lef" onclick="javascript:">(</button></td>
-                                    <td><button id="zer" onclick="javascript:">0</button></td>
-                                    <td><button id="rig" onclick="javascript:">)</button></td>
+                                    <td><button id="lef" onclick="add('(')">(</button></td>
+                                    <td><button id="zer" onclick="add('0')">0</button></td>
+                                    <td><button id="rig" onclick="add(')')">)</button></td>
                                 </tr>
                             </table>
                         </div>
@@ -458,21 +780,136 @@
                 </div>
             </section>
             <section class="widget" id="graph">
-                <div>
-                    
+                <div class="face">
+                    <div class="mainface">
+                        <div>
+                            <label for="func-exp"> 函数表达式(Function expression): </label>
+                            <input type="text" id="func-exp" name="func-exp" />
+                            <p>NOTE: 函数形式为y=f(x) (Function form: y=f(x))<button onclick="draw()">确认(Confirm)</button></p>
+                        </div>
+                        <div>
+                            <canvas id="func-image" width="1000px" height="500px"></canvas>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="widget" id="er-calculator">
-
+                <div class="face">
+                    <div class="mainface">
+                        <form>
+                            <h2>REAL-TIME Exchange Rate Operator</h2>
+                            <section>
+                                <label for="amount">金额(Amount of money)<span> *</span></label>
+                                <input type="text" id="amount" name="amount" />
+                            </section>
+                            <section>
+                                <label for="ori-cur">原币种(FROM)<span> *</span></label>
+                                <select id="ori-cur" name="ori-cur">
+                                </select><br/>
+                                <label for="obj-cur">目标币种(TO)<span> *</span></label>
+                                <select id="obj-cur" name="obj-cur">
+                                </select>
+                            </section>
+                            <button onclick="compute()">确认(Confirm)</button>
+                        </form>
+                        <div>
+                            <p class="result">结果(Result):<b id="ex-result">10</b></p>
+                        </div>
+                    </div>
+                </div>
             </section>
-            <section class="widget" id="rn-calculator">
-
+            <section class="widget" id="rs-calculator">
+                <div class="face">
+                    <div class="mainface">
+                        <form>
+                            <h2>Relative Salution Calculator</h2>
+                            <section>
+                                <label for="relation">[基本关系(Base Relation)]</label>
+                                <select id="relation" name="relation">
+                                    <option value="1">父亲</option>
+                                    <option value="2">母亲</option>
+                                    <option value="3">妻子</option>
+                                    <option value="4">丈夫</option>
+                                    <option value="5">哥哥</option>
+                                    <option value="6">弟弟</option>
+                                    <option value="7">姐姐</option>
+                                    <option value="7">妹妹</option>
+                                    <option value="7">儿子</option>
+                                    <option value="7">女儿</option>
+                                </select>
+                            </section>
+                            <button>添加(Add)</button>
+                            <button>确认(Confirm)</button>
+                            <p id="rl-tree">你</p>
+                        </form>
+                        <div>
+                            <p class="result">称为(Is called):<b id="rs-result">我 俺 本人 在下 鄙人fdsafasdfhflasdfasdjfiohdsljkfhsadlkhflasdkhfdsalkjfhsklh</b></p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
+    <script>
+        $('#tocalculator').click(function() {
+            $('#welcome').fadeOut();
+            $('#calculator').fadeIn();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeOut();
+            $('#rs-calculator').fadeOut();
+        });
+        $('#tograph').click(function() {
+            $('#welcome').fadeOut();
+            $('#calculator').fadeOut();
+            $('#graph').fadeIn();
+            $('#er-calculator').fadeOut();
+            $('#rs-calculator').fadeOut();
+        });
+        $('#toer-calculator').click(function() {
+            $('#welcome').fadeOut();
+            $('#calculator').fadeOut();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeIn();
+            $('#rs-calculator').fadeOut();
+        });
+        $('#tors-calculator').click(function() {
+            $('#welcome').fadeOut();
+            $('#calculator').fadeOut();
+            $('#graph').fadeOut();
+            $('#er-calculator').fadeOut();
+            $('#rs-calculator').fadeIn();
+        });
+        function addCurrency(id, _select) {
+            for (let i of currency) {
+                let j = document.createElement("option");
+                j.nodeValue = i.curno;
+                j.innerHTML = i.curnm + '(' + i.curno + ')';
+                if (i.curno === _select) {
+                    j.selected = true;
+                }
+                document.getElementById(id).appendChild(j);
+            }
+        }
+        addCurrency('ori-cur', 'CNY');
+        addCurrency('obj-cur', 'USD');
+                //alert(getValue("USD", "CNY"));
+        function compute() {
+            var ori = $("#ori-cur").val();
+            ori_index = ori.substr(ori.length - 4, 3);
+            var obj = $("#obj-cur").val(); 
+            obj_index = obj.substr(obj.length - 4, 3);
+            var left = Number(document.getElementById("amount").value);
+            getValue(ori_index, obj_index, left);
+            
+        }
+        function draw() {
+            Drawing("func-image", document.getElementById("func-exp").value);
+        }
+    </script>
 </body>
     <script type="text/javascript" src="js/button.js"></script>
     <script type="text/javascript" src="js/Process.js"></script>
-    <script type="text/javascript">
-    </script>
+    <script type="text/javascript" src="js/exchangeRate.js"></script>
+    <script type="text/javascript" src="js/Drawing.js"></script>
+
 </html>
