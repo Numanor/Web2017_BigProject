@@ -24,31 +24,40 @@ function getTxt1CursorPosition(){
     return cursurPosition;
 }
 
+var loc = -1;
+
 function add(value) {
     if(document.getElementById("expression").value.length == 0)
     {
         document.getElementById("expression").value = value;
         return ;
     }
-    var loc = getTxt1CursorPosition();
+    loc = getTxt1CursorPosition();
     var left = document.getElementById("expression").value.substr(0, loc);
     var right = document.getElementById("expression").value.substr(loc);
     document.getElementById("expression").value = left + value + right;
+    document.getElementById("expression").setSelectionRange(loc + value.length, loc + value.length);
 }
 
 function c_l() {
-    
+    if(loc == 0)
+        return ;
+    loc--;
+    document.getElementById("expression").setSelectionRange(loc + 1, loc + 1);
 }
 
 function c_r() {
-    
+    if(loc == document.getElementById("expression").value.length)
+        return ;
+    loc++;
+    document.getElementById("expression").setSelectionRange(loc + 1, loc + 1);
 }
 
 function cle() {
     document.getElementById("expression").value = "";
 }
 function del() {
-    var loc = getTxt1CursorPosition();
+    loc = getTxt1CursorPosition();
     var left = document.getElementById("expression").value.substr(0, loc - 1);
     var right = document.getElementById("expression").value.substr(loc);
     document.getElementById("expression").value = left + right;
@@ -57,13 +66,13 @@ function del() {
 function ans() {
     if(document.getElementById("expression").value.length == 0)
     {
-        document.getElementById("expression").value = value;
+        document.getElementById("expression").value = eval(Process(_history_cal[_history_cal.length - 1])).toString();
         return ;
     }
-    var loc = getTxt1CursorPosition();
+    loc = getTxt1CursorPosition();
     var left = document.getElementById("expression").value.substr(0, loc);
     var right = document.getElementById("expression").value.substr(loc);
-    document.getElementById("expression").value = left + eval(_history_cal[_history_cal.length - 1]).toString() + right;
+    document.getElementById("expression").value = left + eval(Process(_history_cal[_history_cal.length - 1])).toString() + right;
 }
 function up () {
     if(_history_cal_p == 0)
@@ -96,9 +105,9 @@ function equ() {
 
 function _compute() {
     var ori = $("#ori-cur").val();
-    ori_index = ori.substr(ori.length - 4, 3);
+    var ori_index = ori.substr(ori.length - 4, 3);
     var obj = $("#obj-cur").val(); 
-    obj_index = obj.substr(obj.length - 4, 3);
+    var obj_index = obj.substr(obj.length - 4, 3);
     var left = Number(document.getElementById("amount").value);
     getValue(ori_index, obj_index, left);     
 }
