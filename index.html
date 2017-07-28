@@ -787,7 +787,7 @@
                             <input type="text" id="func-exp" name="func-exp" />
                             <p>NOTE: 函数形式为y=f(x) (Function form: y=f(x))<button onclick="draw()">确认(Confirm)</button></p>
                         </div>
-                        <div>
+                        <div id="canvas-box">
                             <canvas id="func-image" width="1000px" height="500px"></canvas>
                         </div>
                     </div>
@@ -810,7 +810,7 @@
                                 <select id="obj-cur" name="obj-cur">
                                 </select>
                             </section>
-                            <button onclick="compute()">确认(Confirm)</button>
+                            <button onclick="_compute()">确认(Confirm)</button>
                         </form>
                         <div>
                             <p class="result">结果(Result):<b id="ex-result">10</b></p>
@@ -893,17 +893,32 @@
         addCurrency('ori-cur', 'CNY');
         addCurrency('obj-cur', 'USD');
                 //alert(getValue("USD", "CNY"));
-        function compute() {
+        function _compute() {
             var ori = $("#ori-cur").val();
             ori_index = ori.substr(ori.length - 4, 3);
             var obj = $("#obj-cur").val(); 
             obj_index = obj.substr(obj.length - 4, 3);
             var left = Number(document.getElementById("amount").value);
-            getValue(ori_index, obj_index, left);
-            
+            getValue(ori_index, obj_index, left);     
         }
+        var hasDrew = 0;
         function draw() {
-            Drawing("func-image", document.getElementById("func-exp").value);
+            if(hasDrew == 0) {
+                Drawing("func-image", document.getElementById("func-exp").value);
+                hasDrew = 1;
+            }
+            else {
+                var p = document.getElementById("func-image");
+                p.parentNode.removeChild(p);
+                var box = document.getElementById("canvas-box");
+                var canvas = document.createElement('canvas');
+                box.appendChild(canvas);
+                canvas.id = "func-image";
+                canvas.width = 1000;
+                canvas.height = 500;
+                Drawing("func-image", document.getElementById("func-exp").value);
+                hasDrew = 1;
+            }
         }
     </script>
 </body>

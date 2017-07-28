@@ -5,24 +5,27 @@
 *currency.                                                                *
 **************************************************************************/
 
+
+
 function getValue(scur, tcur, left){
     var res = 0;
     $.ajax({
         type          : 'get',
         async         : false,
         url           : 
-         'http://api.k780.com/?app=finance.rate&scur=' + scur + '&tcur=' + tcur + '&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&jsoncallback=data',
+         'http://api.k780.com/?app=finance.rate&scur=' + scur + '&tcur=' + tcur + '&appkey=27095&sign=1c57140e0be0de23e95e22ed7a62746e&format=json&jsoncallback=data',
         dataType      : 'jsonp',
         jsonp         : 'callback',
         jsonpCallback : 'data',
         success       : function(data){
             res = Number(data.result.rate);
-            alert(res);
-            //alert(left + "  " + scur + "  =  " + left * rate + "  " + tcur);
+            //alert(res);
+            alert(left + "  " + scur + "  =  " + left * res + "  " + tcur);
         },
         error:function(){
             alert('fail');
         }
     });
+    alert("汇率为：");
 }
 
