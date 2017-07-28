@@ -93,3 +93,31 @@ function equ() {
     var res = eval(str);
     document.getElementById("result").innerHTML = res;
 }
+
+function _compute() {
+    var ori = $("#ori-cur").val();
+    ori_index = ori.substr(ori.length - 4, 3);
+    var obj = $("#obj-cur").val(); 
+    obj_index = obj.substr(obj.length - 4, 3);
+    var left = Number(document.getElementById("amount").value);
+    getValue(ori_index, obj_index, left);     
+}
+var hasDrew = 0;
+function draw() {
+    if(hasDrew == 0) {
+        Drawing("func-image", document.getElementById("func-exp").value);
+        hasDrew = 1;
+    }
+    else {
+        var p = document.getElementById("func-image");
+        p.parentNode.removeChild(p);
+        var box = document.getElementById("canvas-box");
+        var canvas = document.createElement('canvas');
+        box.appendChild(canvas);
+        canvas.id = "func-image";
+        canvas.width = 1000;
+        canvas.height = 500;
+        Drawing("func-image", document.getElementById("func-exp").value);
+        hasDrew = 1;
+    }
+}

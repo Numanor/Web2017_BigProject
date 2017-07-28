@@ -170,6 +170,7 @@
             width: 98%;
             height: 75vh;
             margin: auto;
+            overflow: scroll;
         }
         /*welcome-face*/
         
@@ -187,7 +188,6 @@
         div.main-container section#welcome.widget div.face img {
             margin: 10vh 0;
             width: 40%;
-            height: 40%;
         }
         div.main-container section#welcome.widget div.face p {
             text-align: center;
@@ -520,9 +520,9 @@
         
         section#graph div.mainface canvas {
             margin: 2vh auto;
-            transform: scale(.84);
             transform-origin: 0% 0%;
             float: left;
+            background: rgba(66, 99, 204, .5);
             border: 1px solid red;
         }
         /*er-calculator*/
@@ -537,7 +537,6 @@
         
         section#er-calculator div.mainface form {
             width: 100%;
-            height: 80%;
             overflow: hidden;
         }
         
@@ -584,9 +583,7 @@
         }
         
         section#er-calculator div.mainface form button {
-            margin: 2vh 2vw;
-            width: 12vw;
-            height: 4vh;
+            margin: 2vh 3vw;
             font-size: 1em;
         }
         
@@ -613,7 +610,6 @@
         
         section#rs-calculator div.mainface form {
             width: 100%;
-            height: 60%;
             overflow: hidden;
         }
         
@@ -654,9 +650,7 @@
         }
         
         section#rs-calculator div.mainface form button {
-            margin: 2vh 2vw;
-            width: 12vw;
-            height: 4vh;
+            margin: 2vh 3vw;
             font-size: 1em;
         }
         
@@ -674,6 +668,7 @@
         section#rs-calculator div.mainface>div>p {
             font-size: 1.2em;
             vertical-align: middle;
+            overflow: scroll;
         }
         
         .clearfix:after {
@@ -688,7 +683,44 @@
             }
         }
         
-        @media screen and (max-width: 735px) {}
+        @media screen and (max-width: 735px) {
+            header #title h1{
+                font-size: 1em;
+            }
+            header #title h2{
+                font-size: .7em;
+            }
+            header nav.menu-bar {
+                font-size: .5em;
+                margin: 30px 0;
+            }
+            div.main-container section#welcome.widget div.face p {
+                font-size: .9em;
+            }
+            section#graph div.mainface div p {
+                font-size: .05em;
+            }
+            section#graph div.mainface div label {
+                font-size: .1em;
+            }
+            section#er-calculator div.mainface form h2,
+            section#rs-calculator div.mainface form h2 {
+                font-size: .8em;
+            }
+            section#er-calculator div.mainface form label,
+            section#rs-calculator div.mainface form label {
+                font-size: .6em;
+            }
+            section#er-calculator div.mainface p.result,
+            section#rs-calculator div.mainface p.result {
+                font-size: .8em;
+                overflow: scroll;
+            }
+            section#er-calculator div.mainface button,
+            section#rs-calculator div.mainface button {
+                font-size: .2em;
+            }
+        }
     </style>
 </head>
 
@@ -810,7 +842,7 @@
                                 <select id="obj-cur" name="obj-cur">
                                 </select>
                             </section>
-                            <button onclick="_compute()">确认(Confirm)</button>
+                            <button type="button"  onclick="_compute()">确认(Confirm)</button>
                         </form>
                         <div>
                             <p class="result">结果(Result):<b id="ex-result">10</b></p>
@@ -838,8 +870,8 @@
                                     <option value="7">女儿</option>
                                 </select>
                             </section>
-                            <button>添加(Add)</button>
-                            <button>确认(Confirm)</button>
+                            <button type="button">添加(Add)</button>
+                            <button type="button">确认(Confirm)</button>
                             <p id="rl-tree">你</p>
                         </form>
                         <div>
@@ -892,34 +924,7 @@
         }
         addCurrency('ori-cur', 'CNY');
         addCurrency('obj-cur', 'USD');
-                //alert(getValue("USD", "CNY"));
-        function _compute() {
-            var ori = $("#ori-cur").val();
-            ori_index = ori.substr(ori.length - 4, 3);
-            var obj = $("#obj-cur").val(); 
-            obj_index = obj.substr(obj.length - 4, 3);
-            var left = Number(document.getElementById("amount").value);
-            getValue(ori_index, obj_index, left);     
-        }
-        var hasDrew = 0;
-        function draw() {
-            if(hasDrew == 0) {
-                Drawing("func-image", document.getElementById("func-exp").value);
-                hasDrew = 1;
-            }
-            else {
-                var p = document.getElementById("func-image");
-                p.parentNode.removeChild(p);
-                var box = document.getElementById("canvas-box");
-                var canvas = document.createElement('canvas');
-                box.appendChild(canvas);
-                canvas.id = "func-image";
-                canvas.width = 1000;
-                canvas.height = 500;
-                Drawing("func-image", document.getElementById("func-exp").value);
-                hasDrew = 1;
-            }
-        }
+
     </script>
 </body>
     <script type="text/javascript" src="js/button.js"></script>
