@@ -20,12 +20,11 @@ function getValue(scur, tcur, left){
         success       : function(data){
             res = Number(data.result.rate);
             //alert(res);
-            alert(left + "  " + scur + "  =  " + left * res + "  " + tcur);
+            document.getElementById("ex-result").innerHTML = left + "  " + scur + "  =  " + left * res + "  " + tcur;
         },
         error:function(){
             alert('fail');
         }
     });
-    alert("汇率为：");
 }
 
