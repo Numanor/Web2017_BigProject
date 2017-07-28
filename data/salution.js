@@ -104,8 +104,56 @@ var salutions_storage = [{
         'num': ['1159'],
         'salution': ['']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['54'],
+        'salution': ['嫂嫂']
+            }, {
+        'num': ['59'],
+        'salution': ['侄子']
+            }, {
+        'num': ['510'],
+        'salution': ['侄女']
+            }, {
+        'num': ['593'],
+        'salution': ['侄媳妇']
+            }, {
+        'num': ['5103'],
+        'salution': ['侄女婿']
+            }, {
+        'num': ['79'],
+        'salution': ['侄子']
+            }, {
+        'num': ['710'],
+        'salution': ['侄女']
+            }, {
+        'num': ['793'],
+        'salution': ['侄媳妇']
+            }, {
+        'num': ['7104'],
+        'salution': ['侄女婿']
+            }, {
+        'num': ['69'],
+        'salution': ['外甥']
+            }, {
+        'num': ['610'],
+        'salution': ['外甥女']
+            }, {
+        'num': ['89'],
+        'salution': ['外甥']
+            }, {
+        'num': ['810'],
+        'salution': ['外甥女']
+            }, {
+        'num': ['694'],
+        'salution': ['外甥媳妇']
+            }, {
+        'num': ['6103'],
+        'salution': ['外甥女婿']
+            }, {
+        'num': ['894'],
+        'salution': ['外甥媳妇']
+            }, {
+        'num': ['8103'],
+        'salution': ['外甥女婿']
             }, {
         'num': [''],
         'salution': ['']
@@ -164,65 +212,23 @@ var salutions_storage = [{
         'num': [''],
         'salution': ['']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['99'],
+        'salution': ['孙男']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['910'],
+        'salution': ['孙女']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['999'],
+        'salution': ['曾孙']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['9999'],
+        'salution': ['玄孙']
             }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['109'],
+        'salution': ['贤外孙']
             }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
-            }, {
-        'num': [''],
-        'salution': ['']
+        'num': ['1010'],
+        'salution': ['贤外孙女']
             },
 
         ];

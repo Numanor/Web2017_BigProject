@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}发布链接}{3}{section.1}
+\contentsline {section}{\numberline {2}功能实现}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}主题界面}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}页面切换}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}响应式设计}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}计算器}{4}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}函数绘图}{5}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}实时汇率转换}{6}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}亲戚关系计算器}{7}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}历史记录}{7}{subsection.2.8}
+\contentsline {section}{\numberline {3}遇到的困难及解决方法}{8}{section.3}
+\contentsline {section}{\numberline {4}心得感言}{9}{section.4}

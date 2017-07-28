@@ -87,12 +87,10 @@ function set_rel() {
     if ($('#rs-result').text().length !== 0) {
         return;
     }
-    alert(rel_tree);
     let select_rel = $('#relation > option');
     for (let i of salutions_storage) {
         if ($.inArray(rel_tree, i.num) !== -1) {
             $('#rs-result').text(i.salution.join(','));
-            alert('yes');
             rel_tree = '';
             $.each(select_rel, function () {
                 $(this).css('display', 'block');
