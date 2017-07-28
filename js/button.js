@@ -27,6 +27,7 @@ function getTxt1CursorPosition(){
 var loc = -1;
 
 function add(value) {
+    $("#expression").focus();
     if(document.getElementById("expression").value.length == 0)
     {
         document.getElementById("expression").value = value;
@@ -36,10 +37,15 @@ function add(value) {
     var left = document.getElementById("expression").value.substr(0, loc);
     var right = document.getElementById("expression").value.substr(loc);
     document.getElementById("expression").value = left + value + right;
+    if(value.indexOf(')') > 0) {
+        document.getElementById("expression").setSelectionRange(loc + value.indexOf(')'), loc + value.indexOf(')'));
+        return ;
+    }
     document.getElementById("expression").setSelectionRange(loc + value.length, loc + value.length);
 }
 
 function c_l() {
+    $("#expression").focus();
     if(loc == 0)
         return ;
     loc--;
@@ -47,6 +53,7 @@ function c_l() {
 }
 
 function c_r() {
+    $("#expression").focus();
     if(loc == document.getElementById("expression").value.length)
         return ;
     loc++;
@@ -55,15 +62,21 @@ function c_r() {
 
 function cle() {
     document.getElementById("expression").value = "";
+    $("#expression").focus();
+    loc = -1;
 }
 function del() {
+    $("#expression").focus();
     loc = getTxt1CursorPosition();
     var left = document.getElementById("expression").value.substr(0, loc - 1);
     var right = document.getElementById("expression").value.substr(loc);
     document.getElementById("expression").value = left + right;
+    loc--;
+    document.getElementById("expression").setSelectionRange(loc, loc);
 }
 
 function ans() {
+    $("#expression").focus();
     if(document.getElementById("expression").value.length == 0)
     {
         document.getElementById("expression").value = eval(Process(_history_cal[_history_cal.length - 1])).toString();
@@ -73,6 +86,8 @@ function ans() {
     var left = document.getElementById("expression").value.substr(0, loc);
     var right = document.getElementById("expression").value.substr(loc);
     document.getElementById("expression").value = left + eval(Process(_history_cal[_history_cal.length - 1])).toString() + right;
+    var len = eval(Process(_history_cal[_history_cal.length - 1])).toString().length;
+    document.getElementById("expression").setSelectionRange(loc + len, loc + len);
 }
 function up () {
     if(_history_cal_p == 0)
