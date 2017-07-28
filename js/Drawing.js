@@ -34,6 +34,7 @@ function Axis(id) {
 }
 
 function Drawing(id, str) {
+    str = str.replace(/ /g, "");
     str = Process(str);
     var w = document.getElementById(id).width;
     var h = document.getElementById(id).height;
@@ -46,7 +47,7 @@ function Drawing(id, str) {
     var y = new Array;
     for(var i = 0; i < 10000; i++) {
         x[i] = (w/10000) * i - (w/2);
-        var tmp = right.replace("x", (x[i]).toString());
+        var tmp = right.replace(/x/g, (x[i]).toString());
         y[i] = (eval(tmp));//modify
     }
 
